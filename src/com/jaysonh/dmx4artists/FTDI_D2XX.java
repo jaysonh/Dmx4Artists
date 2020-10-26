@@ -1,4 +1,4 @@
-//package com.jaysonh.dmx4artists;
+package com.jaysonh.dmx4artists;
 
 // Import packages
 import com.sun.jna.Library;

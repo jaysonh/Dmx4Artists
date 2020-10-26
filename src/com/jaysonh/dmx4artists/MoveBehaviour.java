@@ -1,4 +1,4 @@
-//package com.jaysonh.dmx4artists;
+package com.jaysonh.dmx4artists;
 
  /** 
   * Enum for the different types of movement behaviour of a DMXParamOsc

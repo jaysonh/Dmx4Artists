@@ -13,7 +13,7 @@ import com.jaysonh.dmx4artists.*;
 
 DMXControl dmx;
 DMXFixture rgbLight;
-int lightAddress     = 1;
+int lightAddress     = 0;
 int numLightChannels = 4; // number of channels for the light (master fade, red, green, blue)
 int numDmxChannels   = 4;  // total number of channels allocated for the dmx device
 

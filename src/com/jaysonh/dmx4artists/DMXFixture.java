@@ -30,8 +30,8 @@ public class DMXFixture
    */
   public DMXFixture( PApplet appRef, int dmxAddr, int numChannels )
   {
-      this.appRef   = appRef;
-      this.dmxAddr = dmxAddr - 1; // since real dmx starts from 1 and this library starts from 0 
+      this.appRef      = appRef;
+      this.dmxAddr     = dmxAddr;  
       this.numChannels = numChannels;
      
       channelParams = new ArrayList<DMXParam>();

@@ -38,6 +38,7 @@ public class DMXControl  extends Thread
       }
       setupDevice( numChannels );
   }
+   
   /**
    * Constructor - Create the DMXControl for a given device to use a set number of channels
    *               Best practice is to allocate minimal number of channels   
@@ -71,6 +72,7 @@ public class DMXControl  extends Thread
       super.start();
   
       threadRunning = true;
+      manualUpdate  = false;
   }
 
   /**

@@ -3,11 +3,13 @@ This is a processing library to control generic FTDI DMX USB devices, such as th
 
 ## Setting up
 
-This library has been tested and works with both Windows and OSX. It is designed to be used with generic FTDI DMX USB devices which are commonly found in the cheap usb DMX controllers you see on Taobao and Aliexpress. An example is available on the OFCourse website: www.ofcourse.io
+This library has been tested and works with both Windows and OSX. It is designed to be used with generic FTDI DMX USB devices which are commonly found in the cheap usb DMX controllers you see on Taobao and Aliexpress. 
+
+![USB DMX Device](assets/images/usb-dmx.png)
 
 ### OSX
 
-TO use on osx you need to first disable the FTDI drivers that are installed by default on osx. To do this download and run this program: http://www.dmxis.com/release/FtdiDriverControl.zip
+To use on osx you need to first disable the FTDI drivers that are installed by default on osx. To do this download and run this program: http://www.dmxis.com/release/FtdiDriverControl.zip
 
 Press the "Click to disable the driver" button, you should then be able to run the examples. 
 
@@ -17,4 +19,4 @@ Should work straight away without any changes necessary.
 
 ##
 
-This library was create for the DMX Lighting for Artists workshop for OFCourse in Shanghai, that was run in 2019.
+This library was create for the DMX Lighting for Artists workshop for OFCourse in Shanghai, that was run in 2019. Credit to Omar Khan whose code helped me to understand how to interface with FTDI device https://github.com/orcaomar

@@ -5,7 +5,7 @@ This is a processing library to control generic FTDI DMX USB devices, such as th
 
 This library has been tested and works with both Windows and OSX. It is designed to be used with generic FTDI DMX USB devices which are commonly found in the cheap usb DMX controllers you see on Taobao and Aliexpress. 
 
-![USB DMX Device](../../assets/images/usb-dmx.jpg)
+![USB DMX Device](https://github.com/jaysonh/Dmx4Artists/blob/main/assets/images/usb-dmx.jpg)
 
 ### OSX
 

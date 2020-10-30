@@ -72,7 +72,6 @@ public class DMXControl  extends Thread
       super.start();
   
       threadRunning = true;
-      manualUpdate  = false;
   }
 
   /**

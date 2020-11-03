@@ -59,14 +59,11 @@ void setup()
 
 void draw()
 {
-  // Wait for the first frame to start 
-  //if(frameCount==0)
   background(0,0,0);
- // PGraphics timelineCanvas = timeDisplay.update( timeline, width, 100 );
+
   for(int i= 0; i < numFixtures;i++)
   {
     int v = (int)map(mouseX,0,width,0,255);
-    fixture[i].setParam( 0, v ); // set channel 0 of fixture to fade oscillate
+    fixture[i].setParam( 1, v ); // set channel 0 of fixture to fade oscillate
   }
- // image(timelineCanvas, 0, 0);
 }

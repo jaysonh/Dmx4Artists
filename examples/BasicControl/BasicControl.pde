@@ -28,7 +28,7 @@ void draw()
   	// take the mouse pos and convert it to a number between 0 - 255
   	int brightness = ( int ) map( mouseX, 0, width, 0, 255 ); 
   	
-  	// Send the mapped value to the dmx channels 0 and 1 to control the light
-    dmx.sendValue( 0, brightness );
+  	// Send the mapped value to the dmx channels 1 and 2 to control the light
     dmx.sendValue( 1, brightness );
+    dmx.sendValue( 2, brightness );
 }

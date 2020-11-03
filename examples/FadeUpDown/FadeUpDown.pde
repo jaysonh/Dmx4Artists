@@ -17,7 +17,7 @@ DMXFixture light2;
 int lightAddress1    = 1;
 int lightAddress2    = 9;
 int numLightChannels = 8; // number of channels for the light (master fade, red, green, blue)
-int numDmxChannels   = 511;  // total number of channels allocated for the dmx device
+int numDmxChannels   = 512;  // total number of channels allocated for the dmx device
 
 // These control a param
 DMXParam fadeSlow;
@@ -55,16 +55,16 @@ void setup()
  
  
    // set light 1 to be purple
-   light1.setParam( 0, fadeSlow ); // set the fader channel to the slow oscillator
-   light1.setParam( 1, 255 ); // set the red channel to 255
-   light1.setParam( 2, 0 );   // set the green channel to 0
-   light1.setParam( 3, 255 ); // set the blue channel to 255
+   light1.setParam( 1, fadeSlow ); // set the fader channel to the slow oscillator
+   light1.setParam( 2, 255 ); // set the red channel to 255
+   light1.setParam( 3, 0 );   // set the green channel to 0
+   light1.setParam( 4, 255 ); // set the blue channel to 255
    
    // set light 2 to be green
-   light1.setParam( 0, fadeFast ); // set the fader channel to the fast oscillator
-   light1.setParam( 1, 0 );        // set the red channel to 0
-   light1.setParam( 2, 255 );      // set the green channel to 255
-   light1.setParam( 3, 0 );        // set the blue channel to 0
+   light1.setParam( 1, fadeFast ); // set the fader channel to the fast oscillator
+   light1.setParam( 2, 0 );        // set the red channel to 0
+   light1.setParam( 3, 255 );      // set the green channel to 255
+   light1.setParam( 4, 0 );        // set the blue channel to 0
    
 }
 

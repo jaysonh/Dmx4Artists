@@ -30,10 +30,10 @@ void setup()
    dmx.addFixture( light ); // add the rgb light to the dmx controller
    
    // set light to be purple
-   light.setParam( 0, 255 ); // set the fader channel to 255
-   light.setParam( 1, 255 ); // set the red channel to 255
-   light.setParam( 2, 0 );   // set the green channel to 0
-   light.setParam( 3, 255 ); // set the blue channel to 255
+   light.setParam( 1, 255 ); // set the fader channel to 255
+   light.setParam( 2, 255 ); // set the red channel to 255
+   light.setParam( 3, 0 );   // set the green channel to 0
+   light.setParam( 4, 255 ); // set the blue channel to 255
 }
 
 void draw()

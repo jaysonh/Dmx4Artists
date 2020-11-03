@@ -115,12 +115,14 @@ public class DMXFixture
   /**
    * Set the param at a given index with a DMXParam object 
    *
-   * @param  paramIndx index of param to set
+   * @param  channel index of param to set
    * @param  param     new param to set in fixture
    * @return true/false if the param was able to be set
    */
   public boolean setParam(int paramIndx, DMXParam param)
   {
+	paramIndx = paramIndx - 1; // adjust paramIndx so it starts from 0 not 1 to align with java array precedence
+	
     synchronized( channelParams ) // Make sure we don't access this while using it in another thread
     {
       if( paramIndx >= 0 && paramIndx < channelParams.size() ) // check that paramIndx is within ok range
@@ -146,6 +148,7 @@ public class DMXFixture
    */
   public boolean setParam( int paramIndx, int value )
   {
+	  paramIndx = paramIndx - 1;
       synchronized( channelParams ) // Make sure we don't access this while using it in another thread
       {
           if( paramIndx>=0 && paramIndx < channelParams.size() ) // check that paramIndx is within ok range

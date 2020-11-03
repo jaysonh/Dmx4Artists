@@ -149,7 +149,7 @@ public class FTDIDmx
   {
       // check the data is ok
       assert( port != null );
-      assert( dataLength >= 0 && dataLength < 512 );
+      assert( dataLength >= 0 && dataLength <= 512 );
       
       runFTDI( FTDI_D2XX.INSTANCE.FT_SetBreakOn( port ) );
       runFTDI( FTDI_D2XX.INSTANCE.FT_SetBreakOff( port ) );

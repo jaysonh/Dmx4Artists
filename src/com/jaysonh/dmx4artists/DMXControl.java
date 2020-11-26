@@ -36,7 +36,7 @@ public class DMXControl  extends Thread
               System.out.println(e);
               System.exit(0);
       }
-      setupDevice( numChannels );
+      setupDevice( numChannels + 1 ); // need to add an extra channel so we don't get overrun
   }
    
   /**
@@ -139,7 +139,7 @@ public class DMXControl  extends Thread
               for ( int channel = 0; channel < fixture.getNumChannels(); channel++ )
               {
             	// get the channel value from the fixture, and convert to a byte to send
-                dmxData[ channel + fixture.getAddress()-1 ] = (byte)fixture.getParam( channel ).getValue();
+                dmxData[ channel + fixture.getAddress() ] = (byte)fixture.getParam( channel ).getValue();
               }
           }
       }
@@ -156,7 +156,7 @@ public class DMXControl  extends Thread
   {
     if (channel >= 1 && channel <= numChannels ) // Check channel is valid
     {
-      dmxData[ channel - 1 ] = (byte)value;         // store the value in the dmx value
+      dmxData[ channel ] = (byte)value;         // store the value in the dmx value
     } else
     {
       System.out.println("ERROR! Max channels: " + numChannels); // Print an error message

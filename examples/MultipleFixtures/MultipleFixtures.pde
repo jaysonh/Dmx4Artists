@@ -17,7 +17,7 @@ DMXFixture light2;
 int lightAddress1    = 1;
 int lightAddress2    = 9;
 int numLightChannels = 8; // number of channels for the light (master fade, red, green, blue)
-int numDmxChannels   = 512;  // total number of channels allocated for the dmx device
+int numDmxChannels   = 511;  // total number of channels allocated for the dmx device, must not be more than 511 
 
 void setup()
 {
@@ -39,10 +39,10 @@ void setup()
    light1.setParam( 4, 255 ); // set the blue channel to 255
    
    // set light 2 to be green
-   light1.setParam( 1, 255 ); // set the fader channel to 255
-   light1.setParam( 2, 0 );   // set the red channel to 0
-   light1.setParam( 3, 255 ); // set the green channel to 255
-   light1.setParam( 4, 0 );   // set the blue channel to 0
+   light2.setParam( 1, 255 ); // set the fader channel to 255
+   light2.setParam( 2, 0 );   // set the red channel to 0
+   light2.setParam( 3, 255 ); // set the green channel to 255
+   light2.setParam( 4, 0 );   // set the blue channel to 0
    
 }
 

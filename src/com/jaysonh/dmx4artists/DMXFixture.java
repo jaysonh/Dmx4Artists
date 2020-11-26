@@ -99,6 +99,7 @@ public class DMXFixture
    */ 
   public DMXParam getParam(int indx )
   {
+	  System.out.println(indx + ": " + channelParams.get( indx ).getValue() );
       return channelParams.get( indx );
   }
   
@@ -154,6 +155,7 @@ public class DMXFixture
           if( paramIndx>=0 && paramIndx < channelParams.size() ) // check that paramIndx is within ok range
           {
             channelParams.get( paramIndx ).setValue( value );    // set the value of the channel
+            
             return true;
           }else
           {

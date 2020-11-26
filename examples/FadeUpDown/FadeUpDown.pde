@@ -61,10 +61,10 @@ void setup()
    light1.setParam( 4, 255 ); // set the blue channel to 255
    
    // set light 2 to be green
-   light1.setParam( 1, fadeFast ); // set the fader channel to the fast oscillator
-   light1.setParam( 2, 0 );        // set the red channel to 0
-   light1.setParam( 3, 255 );      // set the green channel to 255
-   light1.setParam( 4, 0 );        // set the blue channel to 0
+   light2.setParam( 1, fadeFast ); // set the fader channel to the fast oscillator
+   light2.setParam( 2, 0 );        // set the red channel to 0
+   light2.setParam( 3, 255 );      // set the green channel to 255
+   light2.setParam( 4, 0 );        // set the blue channel to 0
    
 }
 

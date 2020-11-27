@@ -56,7 +56,7 @@ public class DMXParamOsc extends DMXParam
       
       if( repeat == 0 ) // infinite repeat
       {
-         t = ( ( ( float )( appRef.millis() - startTime ) / 1000.0f ) % period ) / period;
+    	  t = ( ( ( float )( appRef.millis() - startTime ) / 1000.0f ) % period ) / period;
       }else
       {
         t = ( ( ( float )( appRef.millis() - startTime ) / 1000.0f ) ) / period;
@@ -69,9 +69,6 @@ public class DMXParamOsc extends DMXParam
       }
       
       value = (int) map( getMovement(t), 0.0f, 1.0f, min, max ); // get the value from specific movement type
-    }else
-    {
-    	System.out.println("Not started");
     }
   }
   

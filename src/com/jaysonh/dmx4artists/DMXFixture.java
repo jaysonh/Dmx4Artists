@@ -77,12 +77,14 @@ public class DMXFixture
      {
          // Find the index to replace
          int replaceIndx = replaceList.get(0);
+
          DMXParam nextParam = channelParams.get(replaceIndx).getLaunchTrigger();
          
          // If there is a param to trigger then replace and start it
          if(nextParam != null)
          {
              channelParams.set(replaceIndx,nextParam);
+             nextParam.start();
          }
          
          // Remove the current index from the replace list (will then allow loop to go to next one)

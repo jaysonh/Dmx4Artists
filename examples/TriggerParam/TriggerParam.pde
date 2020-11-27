@@ -37,28 +37,30 @@ void setup()
    // The way these work is you create them at startup and assign them to a fixture channel
    // The params will change over time and automatically be sent to that param
    fadeSlow = new DMXParamOsc( this,
-                               10.0,  // oscillate over 10 seconds
-                                  0,  // min dmx value
-                                255,  // max dmx value
-             MoveBehaviour.OSC_SINE,  // This is the type of movement, OSC_SINE means follow a sin function over time
-                                  1); // num times to repeat 0 = infinite repeat
+                               10.0,      // oscillate over 10 seconds
+                                  0,      // min dmx value
+                                255,      // max dmx value
+             MoveBehaviour.OSC_SINE,      // This is the type of movement, OSC_SINE means follow a sin function over time
+                                  1,      // num times to repeat 0 = infinite repeat
+                                  true);  // autostart
                              
    fadeFast = new DMXParamOsc( this,
-                                2.5,  // oscillate over 2.5 seconds
-                                  0,  // min dmx value
-                                255,  // max dmx value
-             MoveBehaviour.OSC_SINE,  // This is the type of movement, OSC_SINE means follow a sin function over time
-                                 0 ); // num times to repeat 0 = infinite repeat
+                                2.5,     // oscillate over 2.5 seconds
+                                  0,     // min dmx value
+                                255,     // max dmx value
+             MoveBehaviour.OSC_SINE,     // This is the type of movement, OSC_SINE means follow a sin function over time
+                                 0,      // num times to repeat 0 = infinite repeat
+                                 false); // autostart
  
    // add the fadeFast trigger to the fadeSlow trigger, so that when the fadeSlow trigger finishes the 
    // fadeFast trigger will begin
    fadeSlow.addTrigger( fadeFast );
    
    // set light 1 to be purple
-   light.setParam( 0, fadeSlow ); // set the fader channel to the slow oscillator
-   light.setParam( 1, 255 ); // set the red channel to 255
-   light.setParam( 2, 0 );   // set the green channel to 0
-   light.setParam( 3, 255 ); // set the blue channel to 255
+   light.setParam( 1, fadeSlow ); // set the fader channel to the slow oscillator
+   light.setParam( 2, 255 ); // set the red channel to 255
+   light.setParam( 3, 0 );   // set the green channel to 0
+   light.setParam( 4, 255 ); // set the blue channel to 255
   
 }
 

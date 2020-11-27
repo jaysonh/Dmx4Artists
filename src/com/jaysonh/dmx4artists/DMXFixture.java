@@ -83,7 +83,6 @@ public class DMXFixture
          if(nextParam != null)
          {
              channelParams.set(replaceIndx,nextParam);
-             nextParam.start();
          }
          
          // Remove the current index from the replace list (will then allow loop to go to next one)
@@ -99,7 +98,6 @@ public class DMXFixture
    */ 
   public DMXParam getParam(int indx )
   {
-	  System.out.println(indx + ": " + channelParams.get( indx ).getValue() );
       return channelParams.get( indx );
   }
   
@@ -129,7 +127,9 @@ public class DMXFixture
       if( paramIndx >= 0 && paramIndx < channelParams.size() ) // check that paramIndx is within ok range
       {        
         // replace the param within this fixture.
+    	//  System.out.println("Setting paramIndx: " + paramIndx);
         channelParams.set(paramIndx, param);
+        param.start();
         
         return true;
       }else

@@ -44,14 +44,16 @@ void setup()
                                   0,  // min dmx value
                                 255,  // max dmx value
              MoveBehaviour.OSC_SINE,  // This is the type of movement, OSC_SINE means follow a sin function over time
-                                  0); // num times to repeat 0 = infinite repeat
+                                  0,  // num times to repeat 0 = infinite repeat
+                                   true); // autostart 
                              
    fadeFast = new DMXParamOsc( this,
                                 2.5,  // oscillate over 2.5 seconds
                                   0,  // min dmx value
                                 255,  // max dmx value
              MoveBehaviour.OSC_SINE,  // This is the type of movement, OSC_SINE means follow a sin function over time
-                                 0 ); // num times to repeat 0 = infinite repeat
+                                 0,   // num times to repeat 0 = infinite repeat
+                                 true);  // autostart
  
  
    // set light 1 to be purple

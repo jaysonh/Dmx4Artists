@@ -31,7 +31,7 @@ public class DMXParamOsc extends DMXParam
    * @param repeat   how many times the oscillation will repeat (0 means infinite repeat)
    * @return nothing
    */
-  public DMXParamOsc( PApplet appRef, float period, int min, int max, MoveBehaviour moveType, int repeat )
+  public DMXParamOsc( PApplet appRef, float period, int min, int max, MoveBehaviour moveType, int repeat, boolean autostart )
   {
       this.appRef   = appRef;
       this.period   = period;
@@ -40,7 +40,7 @@ public class DMXParamOsc extends DMXParam
       this.moveType = moveType;
       this.repeat   = repeat;
       this.finished = false;
-      this.autoStart = false;
+      this.autoStart = autostart;
   } 
   
   /**
@@ -69,6 +69,9 @@ public class DMXParamOsc extends DMXParam
       }
       
       value = (int) map( getMovement(t), 0.0f, 1.0f, min, max ); // get the value from specific movement type
+    }else
+    {
+    	System.out.println("Not started");
     }
   }
   

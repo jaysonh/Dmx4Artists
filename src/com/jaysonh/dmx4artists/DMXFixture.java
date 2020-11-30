@@ -156,8 +156,14 @@ public class DMXFixture
       {
           if( paramIndx>=0 && paramIndx < channelParams.size() ) // check that paramIndx is within ok range
           {
-            channelParams.get( paramIndx ).setValue( value );    // set the value of the channel
-            
+        	// Here we need to check remove any other Param effects, except for 
+            if( DMXParamStatic.class.isInstance(channelParams.get( paramIndx ))  )
+            {
+        	  channelParams.get( paramIndx ).setValue( value );    // set the value of the channel
+            }else
+            {
+            	channelParams.set( paramIndx, new DMXParamStatic(appRef, value) );
+            }
             return true;
           }else
           {

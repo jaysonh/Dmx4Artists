@@ -15,9 +15,9 @@ DMXFixture light1;
 DMXFixture light2;
 
 int lightAddress1    = 1;
-int lightAddress2    = 9;
-int numLightChannels = 8; // number of channels for the light (master fade, red, green, blue)
-int numDmxChannels   = 512;  // total number of channels allocated for the dmx device
+int lightAddress2    = 7;
+int numLightChannels = 6; // number of channels for the light (master fade, red, green, blue)
+int numDmxChannels   = 511;  // total number of channels allocated for the dmx device
 
 // These control a param
 DMXParam fadeSlow;

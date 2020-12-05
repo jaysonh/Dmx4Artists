@@ -21,7 +21,14 @@ public class FTDIDmx
    * Public Methods
    ************************************************************************************/
   
-
+  /**
+   * Constructs an empty dmx device
+   */
+  public FTDIDmx( ) throws FTDIException 
+  {
+	      // load dmx devices into the list
+	      loadFTDIDevices();
+  }
   /**
    * Constructs an OpenDmx object on the given device number. If you only have 1 OpenDMX
    * device connected, then you should just input 0. 
@@ -111,6 +118,7 @@ public class FTDIDmx
   public void loadFTDIDevices() throws FTDIException
   {
        deviceList = new ArrayList< FTDevice >(); // create empty list for devices
+       deviceList.clear();
        
        IntByReference devNum = new IntByReference();
        runFTDI( FTDI_D2XX.INSTANCE.FT_CreateDeviceInfoList( devNum ) );
@@ -177,6 +185,24 @@ public class FTDIDmx
     {
       throw new FTDIException( " error code: "  + checkResult );
     }
+  }
+  
+  
+  public String [] getDevices() throws FTDIException
+  {
+		IntByReference devNum = new IntByReference();
+	    runFTDI( FTDI_D2XX.INSTANCE.FT_CreateDeviceInfoList( devNum ) );
+	      
+	    String [] devices = new String[ devNum.getValue() ];
+	    
+	    for( int i = 0; i < devNum.getValue(); i++ )
+	    {
+	        FTDevice ftDevice = new FTDevice( i );
+	        
+	        devices[ i ] = ftDevice.getSerial();
+	    }  
+	    
+		return devices;
   }
   
   /************************************************************************************

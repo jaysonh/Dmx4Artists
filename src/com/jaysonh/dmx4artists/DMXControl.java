@@ -63,6 +63,22 @@ public class DMXControl  extends Thread
   }
   
   /**
+   * List all dmx devices connected to this computer
+   */
+  public static String [] listDevices()
+  {
+	  try
+	  {
+		  return new FTDIDmx().getDevices();
+	  }catch( FTDIException e )
+	  {
+		  String [] emptyList= {};
+          System.out.println(e);
+          return emptyList;
+	  }
+  }
+  
+  /**
    * start the thread running  
    *
    * @return nothing

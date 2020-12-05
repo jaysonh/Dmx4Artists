@@ -22,7 +22,7 @@ void setup()
 {
    size( 600, 600 );
    
-   // Connect to the first dmx usb device available
+   // Connect to dmx device with serial number: AG0JGSJV
    dmx = new DMXControl( "AG0JGSJV", numDmxChannels );
    
    light = new DMXFixture( this, lightAddress, numLightChannels); 

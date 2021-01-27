@@ -14,13 +14,15 @@ This library has been tested and works with both Windows and OSX. It is designed
 
 ### OSX
 
-To use on osx you need to first disable the FTDI drivers that are installed by default on osx. To do this download and run this program: http://www.dmxis.com/release/FtdiDriverControl.zip
+Please install the DMX Pro Manager software which will setup the correct drivers: https://www.enttec.com/product/controls/dmx-lighting-control-software/pro-manager/
+
+Once you have installed the DMX Pro Manager software then disable the FTDI drivers that are installed by default on osx. To do this download and run this program: http://www.dmxis.com/release/FtdiDriverControl.zip
 
 Press the "Click to disable the driver" button, you should then be able to run the examples. 
 
 ### Windows
 
-Should work straight away without any changes necessary.
+Please install the DMX Pro Manager software which will setup the correct drivers: https://www.enttec.com/product/controls/dmx-lighting-control-software/pro-manager/
 
 ##
 

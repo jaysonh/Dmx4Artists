@@ -20,6 +20,8 @@ Once you have installed the DMX Pro Manager software then disable the FTDI drive
 
 Press the "Click to disable the driver" button, you should then be able to run the examples. 
 
+If you are having trouble running the examples in Processing, such as the error message "A library relies on native code that's not available."  then make sure the ftd2xx.dll and ftd2xx64.dll files are in the C:\Windows\System32 folder
+
 ### Windows
 
 Please install the DMX Pro Manager software which will setup the correct drivers: https://www.enttec.com/product/controls/dmx-lighting-control-software/pro-manager/

@@ -14,17 +14,22 @@ This library has been tested and works with both Windows and OSX. It is designed
 
 ### OSX
 
-Please install the DMX Pro Manager software which will setup the correct drivers: https://www.enttec.com/product/controls/dmx-lighting-control-software/pro-manager/
+Copy the file libftd2xx.1.2.2.dylib from the libraries folder of the repo to your desktop
+open terminal (open launchpad and type terminal)
+type these commands:
+cp ~/Desktop/libftd2xx.1.2.2.dylib /usr/local/lib/
+ln -sf /usr/local/lib/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.dylib
 
-Once you have installed the DMX Pro Manager software then disable the FTDI drivers that are installed by default on osx. To do this download and run this program: http://www.dmxis.com/release/FtdiDriverControl.zip
+If you are having trouble running the examples then try disabling the default ftd2xx drivers. To do this download and run this program: http://www.dmxis.com/release/FtdiDriverControl.zip
 
 Press the "Click to disable the driver" button, you should then be able to run the examples. 
 
-If you are having trouble running the examples in Processing, such as the error message "A library relies on native code that's not available."  then make sure the ftd2xx.dll and ftd2xx64.dll files are in the C:\Windows\System32 folder
 
 ### Windows
 
 Please install the DMX Pro Manager software which will setup the correct drivers: https://www.enttec.com/product/controls/dmx-lighting-control-software/pro-manager/
+
+If you are having trouble running the examples in Processing, such as the error message "A library relies on native code that's not available."  then make sure the ftd2xx.dll and ftd2xx64.dll files are in the C:\Windows\System32 folder
 
 ##
 

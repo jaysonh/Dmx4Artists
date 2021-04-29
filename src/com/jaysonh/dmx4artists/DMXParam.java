@@ -131,9 +131,10 @@ public abstract class DMXParam
    *
    * @return value of the param
    */
-  public int getValue()
+  
+  public float getValue()
   {
-    return value;
+	  return value;
   }
   
   /**
@@ -158,7 +159,7 @@ public abstract class DMXParam
   * Protected Variables
   ************************************************************************************/           
   
-  protected int     value     = 0;     // Value that this param holds
+  protected float   value     = 0;     // Value that this param holds
   protected long    startTime;         // Time that the param started
   protected boolean autoStart = true;  // Will this param start automatically when program starts or will need to be triggered manually to start
   protected boolean started   = false; // has the param started or not

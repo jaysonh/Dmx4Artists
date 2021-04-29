@@ -50,26 +50,30 @@ public class DMXParamOsc extends DMXParam
    */
   public void update()
   {
-    if( started )
-    {
-      float t = 0.0f;
-      
-      if( repeat == 0 ) // infinite repeat
-      {
-    	  t = ( ( ( float )( appRef.millis() - startTime ) / 1000.0f ) % period ) / period;
-      }else
-      {
-        t = ( ( ( float )( appRef.millis() - startTime ) / 1000.0f ) ) / period;
-        
-        if( t >= ( float ) repeat )
-        {
-            finished = true;
-            t=1.0f;
-        }
-      }
-      
-      value = (int) map( getMovement(t), 0.0f, 1.0f, min, max ); // get the value from specific movement type
-    }
+	  	if( !finished && !started && autoStart)
+	  		started = true;
+	  
+	    if( started )
+	    {
+	      float t = 0.0f;
+	      
+	      if( repeat == 0 ) // infinite repeat
+	      {
+	    	  t = ( ( ( float )( appRef.millis() - startTime ) / 1000.0f ) % period ) / period;
+	      }else
+	      {
+	        t = ( ( ( float )( appRef.millis() - startTime ) / 1000.0f ) ) / period;
+	        
+	        if( t >= ( float ) repeat )
+	        {
+	            finished = true;
+	            t=1.0f;
+	        }
+	      }
+	      
+	      
+	      value = map( getMovement(t), 0.0f, 1.0f, min, max ); // get the value from specific movement type
+	    }
   }
   
   /**
@@ -93,20 +97,20 @@ public class DMXParamOsc extends DMXParam
     return abs( sin( t * PI ) );
   }
   
-  private float getSawWave( float t )
+  private float getOscLinearRamp( float t )
   {
-    return t / period; // goes up then resets to 0
+    return t; // goes up then resets to 0
   }
   
   private float getOscLinear( float t ) 
   {
       // uses a triangle wave, up then down
-      return 1.0f- abs((period/2.0f) - t) * 2.0f;
+      return 1.0f- abs( 0.5f - t) * 2.0f;
   }
   
   private float getExp( float t )
   {
-     return (float)Math.exp( (t / period) * PI ) / (float)Math.exp(PI);
+     return (float)Math.exp( (t / 1.0) * PI ) / (float)Math.exp(PI);
   }
   private float getMovement( float t )
   {
@@ -123,7 +127,7 @@ public class DMXParamOsc extends DMXParam
         break;
         
         case OSC_LINEAR_RAMP:
-          result = getSawWave( t );
+          result = getOscLinearRamp( t );
           break;
           
         case OSC_EXP:

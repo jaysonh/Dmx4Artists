@@ -120,7 +120,7 @@ public class DMXFixture
    * @param  param     new param to set in fixture
    * @return true/false if the param was able to be set
    */
-  public boolean setParam(int paramIndx, DMXParam param)
+  public boolean setParam( int paramIndx, DMXParam param )
   {
 	paramIndx = paramIndx - 1; // adjust paramIndx so it starts from 0 not 1 to align with java array precedence
 	
@@ -136,6 +136,7 @@ public class DMXFixture
         return true;
       }else
       {
+    	  System.out.println("Warning! Channel out of bounds, channel 0 not used");
         return false;
       }
     }
@@ -149,6 +150,12 @@ public class DMXFixture
    * @param  param     new param to set in fixture
    * @return true/false if the param was able to be set
    */
+  public boolean setParam( int paramIndx, float value)
+  {
+	  setParam( paramIndx, (int) value );
+	  
+	  return true;
+  }
   public boolean setParam( int paramIndx, int value )
   {
 	  paramIndx = paramIndx - 1;
@@ -167,6 +174,7 @@ public class DMXFixture
             return true;
           }else
           {
+        	  System.out.println("Warning! Channel out of bounds");
             return false;
           }
       }

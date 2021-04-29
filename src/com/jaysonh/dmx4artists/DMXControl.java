@@ -155,7 +155,7 @@ public class DMXControl  extends Thread
               for ( int channel = 0; channel < fixture.getNumChannels(); channel++ )
               {
             	// get the channel value from the fixture, and convert to a byte to send
-                dmxData[ channel + fixture.getAddress() - 1 ] = (byte)fixture.getParam( channel ).getValue();
+                dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( (int)fixture.getParam( channel ).getValue());
               }
           }
       }
@@ -170,12 +170,12 @@ public class DMXControl  extends Thread
    */
   public void sendValue(int channel, int value)
   {
-    if (channel >= 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
+    if (channel > 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
     {
       dmxData[ channel - 1] = (byte)value;         // store the value in the dmx value
     } else
     {
-      System.out.println("ERROR! Max channels: " + numChannels); // Print an error message
+      System.out.println("Warning! Channel out of bounds, channel 0 not used"); // Print an error message
     }
   }
 

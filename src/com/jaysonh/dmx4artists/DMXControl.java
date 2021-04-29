@@ -180,6 +180,18 @@ public class DMXControl  extends Thread
   }
 
   /**
+   * Send a value to a channel, overrides any existing value
+   *
+   * @param  channel channel to set value of
+   * @param  value   value to set
+   * @return nothing
+   */
+   public void sendValue(float channel, float value)
+   {
+      sendValue( channel, (int)value );
+   }
+  
+  /**
    * Stop the thread running
    *
    * @return nothing

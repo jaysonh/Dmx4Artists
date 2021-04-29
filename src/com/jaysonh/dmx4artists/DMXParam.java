@@ -105,6 +105,17 @@ public abstract class DMXParam
   }  
   
   /**
+   * Set the value of the param
+   *
+   * @param  value to set
+   * @return nothing
+   */
+  public void setValue( float value )
+  { 
+    this.value = value;
+  }  
+  
+  /**
    * Set whether the param will autostart
    *
    * @param  autoStart do we autostart the param

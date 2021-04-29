@@ -31,6 +31,12 @@ public  class DMXParamStatic extends DMXParam
       this.value = value; 
   }
   
+  public DMXParamStatic( PApplet appRef, float value )
+  {
+      this.appRef = appRef;
+      this.value  = value; 
+  }
+  
   public String getType()
   {
     return "static";

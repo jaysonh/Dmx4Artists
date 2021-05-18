@@ -30,7 +30,7 @@ public class TimelineEvent
                          float      start          // start time (seconds)
                        )
    {
-     setup(parentFixture,param, paramChannel, start, -1.0f); // -1.0 signifies that the param should continue until it
+     setup(parentFixture,param, paramChannel, start, -1.0f, false); // -1.0 signifies that the param should continue until it
                                                             // completes it's behaviour, useful for OSCParams
    } 
    
@@ -52,8 +52,19 @@ public class TimelineEvent
                          float      end            // end time (seconds) 
                  )
    {
-     setup( parentFixture, param, paramChannel, start, end );
+     setup( parentFixture, param, paramChannel, start, end, false );
    } 
+   
+   public TimelineEvent( DMXFixture parentFixture, // fixture to assign this timeline event to
+           DMXParam   param,         // dmx param to assign this timeline event to
+           int        paramChannel,  // param indx to assign to
+           float      start,         // start time (seconds)  
+           float      end,           // end time (seconds) 
+           boolean    contValue
+   )
+{
+setup( parentFixture, param, paramChannel, start, end, contValue );
+} 
    
    /**
     * Setup this Timeline event
@@ -70,14 +81,16 @@ public class TimelineEvent
                       DMXParam param,            // dmx param to assign this timeline event to
                       int      paramChannel,     // param indx to assign to
                       float    start,            // start time (seconds)
-                      float    end               // end time (seconds) 
+                      float    end,              // end time (seconds) 
+                      boolean  contValue		 // continue value
              )
    {
      this.start        = start;
      this.end          = end;
      this.paramChannel = paramChannel;
-     this.param        = param;
+     this.param        = param.getCopy();
      this.fixture      = parentFixture;
+     this.contValue    = contValue;
    }
    
    /**
@@ -99,18 +112,41 @@ public class TimelineEvent
    public void update( float parentTime )
    {
        // start the param if it hasn't been started and after start time
-       if( parentTime >= start && !param.getStarted() )
+	   if( parentTime >= start && parentTime < end && !param.getStarted() )
+	   {
+		   // This is for the next version
+		   /*if( contValue )
+		   {
+
+			   int lastVal = ( int )fixture.getParam( paramChannel ).getValue();
+
+			   param.setStartVal( lastVal );
+		   }*/
+		   
+		   fixture.setParam( paramChannel, param );
+		   
+	       
+		   param.start(); 
+	   }
+	   System.out.println( "update lastval: " +  (int)fixture.getParam( paramChannel ).getValue() );
+	   if( parentTime > end )
+	   {
+		    param.stop();
+	   }
+	   
+       /*if( parentTime >= start &&  parentTime < end && !param.getStarted() && !param.hasFinished() )
        {
           // assign param to fixture
           fixture.setParam( paramChannel, param );
           param.start(); 
        }
        
-       if( (parentTime >= start && end   < 0.0 )  ||
-           (parentTime >= start && parentTime < end ) )
+       // Need to end the param here
+       if( parentTime >=  end  )
        {
-         
-       } 
+    	   System.out.println("Ending param");
+           param.setFinished( true );
+       } */
    }  
    
    /**
@@ -141,6 +177,18 @@ public class TimelineEvent
     */
    public DMXParam   getParam()   { return param;   }
    
+   /**
+    * Set status to continue from previous value
+    * if true then the timeline event will continue, 
+    * if false it will restart from 0
+    * 
+    * @param status
+    */
+   public void setContinueValue( boolean status )
+   {
+	   this.contValue = status;
+   }
+   
   /************************************************************************************
    * Private Variables
    ************************************************************************************/
@@ -150,4 +198,6 @@ public class TimelineEvent
     private DMXParam   param;        // param that is affected
     private DMXFixture fixture;      // fixture that is controlled
     private int        paramChannel; // param channel that is affected
+    private boolean    contValue;    // continue from the previous value, if false it 
+    								 // will restart from 0
 }  

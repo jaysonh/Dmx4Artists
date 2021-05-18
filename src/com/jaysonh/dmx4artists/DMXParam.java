@@ -28,6 +28,8 @@ public abstract class DMXParam
   {    
   }
   
+  public abstract DMXParam getCopy();
+  
  /**
   * Has the param finished running
   *
@@ -36,6 +38,19 @@ public abstract class DMXParam
   public boolean hasFinished()
   {
      return this.started && this.finished;
+  }
+
+  public void stop()
+  {
+	  started   = true;
+	  finished  = true;
+	  autoStart = false;
+  }
+  
+  void reset()
+  {
+	  started  = false;
+	  finished = false;
   }
   
  /**
@@ -83,15 +98,11 @@ public abstract class DMXParam
     }
   }
   
-  /**
-   * Reset the param, restart the thread  
-   *
-   * @return nothing
+  /** 
+   * Stop running the thread for this param
    */
-  public void reset()
-  {
-    started = false;
-  }
+  
+ 
   
   /**
    * Set the value of the param
@@ -158,7 +169,21 @@ public abstract class DMXParam
     return autoStart;
   }
    
-   /**
+  /**
+   * Set the finished state of the Param
+   * @param finished
+   */
+  public void setFinished( boolean finished )
+  {
+	  this.finished = finished;
+  }
+  
+  public void setStartVal( int startVal )
+  {
+	  this.startVal = startVal;
+  }
+  
+  /**
    * Get the type of the param as a string (used for debugging)
    *
    * @return type of the param as a string 
@@ -175,7 +200,7 @@ public abstract class DMXParam
   protected boolean autoStart = true;  // Will this param start automatically when program starts or will need to be triggered manually to start
   protected boolean started   = false; // has the param started or not
   protected boolean finished  = false; // has the param finsihed
-  
+  protected int     startVal  = 0;
   protected DMXParam triggerParam;     // Param to trigger when this one finishes
   protected PApplet appRef;            // Reference to processing app
 

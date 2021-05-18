@@ -31,7 +31,7 @@ public class DMXParamOsc extends DMXParam
    * @param repeat   how many times the oscillation will repeat (0 means infinite repeat)
    * @return nothing
    */
-  public DMXParamOsc( PApplet appRef, float period, int min, int max, MoveBehaviour moveType, int repeat, boolean autostart )
+  public DMXParamOsc( PApplet appRef, float period, int min, int max, MoveBehaviour moveType, int repeat, boolean autoStart )
   {
       this.appRef   = appRef;
       this.period   = period;
@@ -40,9 +40,14 @@ public class DMXParamOsc extends DMXParam
       this.moveType = moveType;
       this.repeat   = repeat;
       this.finished = false;
-      this.autoStart = autostart;
+      this.autoStart = autoStart;
   } 
   
+  
+  public DMXParam getCopy()
+  {
+	  return new DMXParamOsc( appRef, period, min, max, moveType, repeat, autoStart );
+  }
   /**
    * updates the oscillation values
    *
@@ -53,7 +58,7 @@ public class DMXParamOsc extends DMXParam
 	  	if( !finished && !started && autoStart)
 	  		started = true;
 	  
-	    if( started )
+	    if( started && !finished )
 	    {
 	      float t = 0.0f;
 	      
@@ -73,6 +78,7 @@ public class DMXParamOsc extends DMXParam
 	      
 	      
 	      value = map( getMovement(t), 0.0f, 1.0f, min, max ); // get the value from specific movement type
+	      System.out.println("value: " + value);
 	    }
   }
   
@@ -94,7 +100,13 @@ public class DMXParamOsc extends DMXParam
   // Get an up and down value
   private float getOscSine( float t )
   {
-    return abs( sin( t * PI ) );
+	  float offset = 0.0f;
+	  
+	  if( startVal > 0.0)
+	  {
+		  offset = (float)(startVal - min ) / (float)(max-min);
+	  }
+	  return abs( sin( t * PI + offset * PI) );
   }
   
   private float getOscLinearRamp( float t )

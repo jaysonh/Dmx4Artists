@@ -126,6 +126,33 @@ public class Timeline extends Thread
                                              end ) );
   }
   
+  /**
+   * Add a event to this timeline
+   * 
+   * @param  parentFixture  fixture for the event to processing sketch    
+   * @param  param          param for the event
+   * @param  paramChannel   channel that is effected
+   * @param  start          start time for the event
+   * @param  end            end time for the event
+   * @return nothing
+   */ 
+  public void add( DMXFixture  parentFixture, // fixture to assign this timeline event to
+                   DMXParam param,            // dmx param to assign this timeline event to
+                   int      paramChannel,     // param indx to assign to
+                   float    start,            // start time (seconds)
+                   float    end,              // end time (seconds) 
+                   boolean  contValue		  // continue value after event (not implemented)
+                )
+  {
+      // add a new event to timeline with all the parameters
+      timelineEvents.add( new TimelineEvent( parentFixture,
+                                             param,
+                                             paramChannel,
+                                             start,
+                                             end,
+                                             contValue) );
+  }
+  
   
   /**
    * Set the event to repeat or not

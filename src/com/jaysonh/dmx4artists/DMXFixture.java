@@ -78,17 +78,17 @@ public class DMXFixture
          // Find the index to replace
          int replaceIndx = replaceList.get(0);
 
-         DMXParam nextParam = channelParams.get(replaceIndx).getLaunchTrigger();
+         DMXParam nextParam = channelParams.get( replaceIndx ).getLaunchTrigger();
          
          // If there is a param to trigger then replace and start it
-         if(nextParam != null)
+         if( nextParam != null )
          {
-             channelParams.set(replaceIndx,nextParam);
+             channelParams.set( replaceIndx, nextParam );
              nextParam.start();
          }
          
          // Remove the current index from the replace list (will then allow loop to go to next one)
-         replaceList.remove(0);
+         replaceList.remove( 0 );
      }
   }
    
@@ -101,6 +101,11 @@ public class DMXFixture
   public DMXParam getParam(int indx )
   {
       return channelParams.get( indx );
+  }
+  
+  public void setStartValu( int startVal )
+  {
+	  
   }
   
   /**
@@ -130,7 +135,7 @@ public class DMXFixture
       {        
         // replace the param within this fixture.
     	//  System.out.println("Setting paramIndx: " + paramIndx);
-        channelParams.set(paramIndx, param);
+        channelParams.set( paramIndx, param );
         param.start();
         
         return true;

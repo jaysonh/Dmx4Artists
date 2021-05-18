@@ -37,6 +37,11 @@ public  class DMXParamStatic extends DMXParam
       this.value  = value; 
   }
   
+  public DMXParam getCopy()
+  {
+	  return new DMXParamStatic( appRef, value );
+  }
+  
   public String getType()
   {
     return "static";

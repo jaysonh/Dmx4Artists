@@ -128,7 +128,7 @@ setup( parentFixture, param, paramChannel, start, end, contValue );
 	       
 		   param.start(); 
 	   }
-	   System.out.println( "update lastval: " +  (int)fixture.getParam( paramChannel ).getValue() );
+
 	   if( parentTime > end )
 	   {
 		    param.stop();

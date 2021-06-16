@@ -20,7 +20,7 @@ Press the "Click to disable the driver" button, you should then be able to run t
 
 ### Windows
 
-Should work straight away without any changes necessary.
+Put the ftd2xx.dll file in the windowsDependencies folder into your C:/windows/system32 folder
 
 ##
 

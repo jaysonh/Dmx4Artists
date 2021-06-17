@@ -14,15 +14,30 @@ This library has been tested and works with both Windows and OSX. It is designed
 
 ### OSX
 
-To use on osx you need to first disable the FTDI drivers that are installed by default on osx. To do this download and run this program: http://www.dmxis.com/release/FtdiDriverControl.zip
+You may need to install the libftd2xx.dylib file to your /usr/local/lib folder
 
-Press the "Click to disable the driver" button, you should then be able to run the examples. 
+open the terminal and type: cd /usr/local/lib
+
+if you get a message saying that this folder does not exist then type and retry previous step: sudo mkdir /usr/local/lib
+
+type the following command to open a finder window: sudo open .
+
+now copy the libftd2xx.1.2.2.dylib file from osxDependencies to that folder
+
+back in terminal type: sudo ln -sf /usr/local/lib/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.dylib
+
+it should now work:)
 
 ### Windows
 
 Put the ftd2xx.dll file in the windowsDependencies folder into your C:/windows/system32 folder
 
+### Still having problems?
+
+Try installing qlc plus https://qlcplus.org/ which may set up some extra system properties that need to be set
+
 ##
+
 
 This library was create for the DMX Lighting for Artists workshop for OFCourse in Shanghai, that was run in 2019. Credit to Omar Khan whose code helped me to understand how to interface with FTDI device https://github.com/orcaomar
 

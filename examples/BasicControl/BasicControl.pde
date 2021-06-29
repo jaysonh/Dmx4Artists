@@ -11,7 +11,7 @@ import com.jaysonh.dmx4artists.*;
 
 DMXControl dmx;
 
-int numDmxChannels = 8; // number of channels we will use
+int numDmxChannels = 256; // number of channels we will use
 
 void setup()
 {

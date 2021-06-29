@@ -186,9 +186,19 @@ public class DMXControl  extends Thread
    * @param  value   value to set
    * @return nothing
    */
-   public void sendValue(float channel, float value)
+   public void sendValue(int channel, float value)
    {
       sendValue( channel, (int)value );
+   }
+   
+   /*
+    * 
+    * need this to stop recursion problems?
+    */
+   public void setChannelVal( int channel, int value )
+   {
+	   
+	   
    }
   
   /**

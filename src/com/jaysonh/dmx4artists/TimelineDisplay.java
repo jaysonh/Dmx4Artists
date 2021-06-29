@@ -74,9 +74,9 @@ public class TimelineDisplay
           float xPosEnd   = PApplet.map( end,   0, timeline.getDuration(), 0, this.width );
           
           canvas.fill( 255 );
-          canvas.text( "addr:" + event.getFixture().getAddress(), xPosStart, (float)numEvents * eventHeight + 10 );
-          canvas.text( "type:" + event.getParam().getType(),      xPosStart, (float)numEvents * eventHeight + 20 );
-          
+          canvas.text( "fix addr:" + event.getFixture().getAddress(), xPosStart, (float)numEvents * eventHeight + 10 );
+          canvas.text( "type:" + event.getParam().getType() + ":" + (int)event.getParam().getValue(),          xPosStart, (float)numEvents * eventHeight + 20 );
+          canvas.text( "channel: " + event.getParamChannel(),         xPosStart, (float)numEvents * eventHeight + 30 );
           canvas.fill( appRef.random( 0.0f, 255.0f ), 125.0f );
           canvas.rect( xPosStart,(float)numEvents * eventHeight, xPosEnd-xPosStart, eventHeight );
           

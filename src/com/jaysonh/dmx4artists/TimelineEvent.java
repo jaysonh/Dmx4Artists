@@ -178,6 +178,13 @@ setup( parentFixture, param, paramChannel, start, end, contValue );
    public DMXParam   getParam()   { return param;   }
    
    /**
+    * get the param channel
+    * 
+    * @return The param channel of this timeline event
+    */
+   public int   getParamChannel()   { return paramChannel;   }
+   
+   /**
     * Set status to continue from previous value
     * if true then the timeline event will continue, 
     * if false it will restart from 0

@@ -76,7 +76,6 @@ public class DMXParamOsc extends DMXParam
 	        }
 	      }
 	      
-	      
 	      value = map( getMovement(t), 0.0f, 1.0f, min, max ); // get the value from specific movement type
 	    }
   }

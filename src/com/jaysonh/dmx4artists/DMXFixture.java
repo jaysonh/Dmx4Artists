@@ -103,6 +103,10 @@ public class DMXFixture
       return channelParams.get( indx );
   }
   
+  /**
+   * Not implemented
+   * @param startVal
+   */
   public void setStartValu( int startVal )
   {
 	  
@@ -186,11 +190,30 @@ public class DMXFixture
   }
   
   /**
+   * Set the address of this fixture
+   * 
+   * @param  addr address to set 
+   * @return true/false if address is ok 
+   */
+  public boolean setAddress( int addr )
+  {
+	  if( addr >= minDMXAddress && addr <= maxDMXAddress )
+	  {
+		  dmxAddr = addr;  
+		  return true;
+	  }else
+		  return false;
+  }
+  
+  /**
    * Get the address of this fixture
    *
    * @return address of the fixture
    */
   public int getAddress() { return dmxAddr; }
+  
+  public final int minDMXAddress = 1;
+  public final int maxDMXAddress = 255;
   
   /************************************************************************************
    * Private Variables

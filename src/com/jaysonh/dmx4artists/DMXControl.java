@@ -27,14 +27,13 @@ public class DMXControl  extends Thread
    public DMXControl( String serialNum, int numChannels )
    {
       try 
-      {
-              ftdiDmx     = new FTDIDmx( serialNum );
+      {  	  
+              ftdiDmx = new FTDIDmx( serialNum );
       } 
       catch (FTDIException e) 
       {
               // print the error message and exit
               System.out.println(e);
-              System.exit(0);
       }
       setupDevice( numChannels + 1 ); // need to add an extra channel so we don't get overrun
   }
@@ -58,7 +57,6 @@ public class DMXControl  extends Thread
       {
           // print the error message and exit
           System.out.println(e);
-          System.exit(0);
       }
   }
   
@@ -154,8 +152,22 @@ public class DMXControl  extends Thread
               // get each channel value from fixture
               for ( int channel = 0; channel < fixture.getNumChannels(); channel++ )
               {
-            	// get the channel value from the fixture, and convert to a byte to send
-                dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( (int)fixture.getParam( channel ).getValue());
+	            	// if we are fading to the next value  
+	            	if( fadeVals && fadeRate < 1.0 )
+	            	{
+	            		// get previous value (not working)
+	            		int   prevVal   = Byte.toUnsignedInt( dmxData[ channel + fixture.getAddress() - 1 ] ); // problem!!
+	            		float targetVal = ( int ) fixture.getParam( channel ).getValue();
+	            		float diff      = (targetVal - (float)prevVal) * fadeRate;
+	            		
+	            		float nextVal = ( float )prevVal + diff; 
+	            		dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( (int)nextVal);
+		            	
+	            	}else
+	            	{
+	            		// get the channel value from the fixture, and convert to a byte to send
+	            		dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( (int)fixture.getParam( channel ).getValue());
+	            	}
               }
           }
       }
@@ -170,13 +182,32 @@ public class DMXControl  extends Thread
    */
   public void sendValue(int channel, int value)
   {
-    if (channel > 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
+    /*if (channel > 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
     {
       dmxData[ channel - 1] = (byte)value;         // store the value in the dmx value
     } else
     {
       System.out.println("Warning! Channel out of bounds, channel 0 not used"); // Print an error message
-    }
+    }*/
+	if (channel > 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
+	{
+		if( fadeVals && fadeRate < 1.0 )
+	  	{
+	  		// get previous value
+	  		int   prevVal   = (int)dmxData[ channel - 1 ];
+	  		float targetVal = value;
+	  		float diff      = ((float)(targetVal - prevVal)) * fadeRate;
+	  		
+	  		float nextVal = ( float )prevVal + diff; 
+	  		System.out.println("target: " + targetVal + " nextVal: " + nextVal + " prevVal: " + prevVal + " diff: " + diff );
+	  		dmxData[ channel - 1 ] = (byte)( (int)nextVal);
+	      	
+	  	}else
+	  	{
+	  		// get the channel value from the fixture, and convert to a byte to send
+	  		dmxData[ channel - 1 ] = (byte)( value );
+	  	}
+	}
   }
 
   /**
@@ -234,6 +265,33 @@ public class DMXControl  extends Thread
             System.out.println("ERROR!, number of channels must be less than " + MAX_CHANNELS);
         } 
   }
+  
+  /**
+   * set true/false for fading between light values
+   * 
+   * @param status true/false to fade
+   */
+  public void setFade( boolean status )
+  {
+	  fadeVals = status;
+	  
+	  if(fadeVals)
+	  {
+		  
+	  }
+  }
+  
+  /**
+   * sets how fast to fade betweeen old values to new values
+   * set to 1.0 for instant fade
+   * 
+   * @param fadeVal - rate to fade into new value
+   */
+  public void setFadeRate( float fadeVal )
+  {
+	  fadeRate = fadeVal;
+  }
+  
   /************************************************************************************
    * Public Constants
    ************************************************************************************/
@@ -251,4 +309,9 @@ public class DMXControl  extends Thread
   private byte [] dmxData;           // stores the dxm data to send
   private boolean connected;         // are we connected to the dmx device
   private boolean threadRunning ;    // is thre thread runnning
+  
+  // For fading values
+  private boolean fadeVals = false;  // off by default
+  private float   fadeRate = 1.0f;    // 1.0 - instant fade 0.0 infinite fade
+  
 }

@@ -23,7 +23,7 @@ public class OSXValidator
 	     
 	    if(res.length > 0)
 	    {
-	      String []cols = split( res[0], " ");
+	      String []cols = res[0].split(" "); //split( res[0], " ");
 	      if(cols.length>=15)
 	      {
 	        String dylibLink = cols[cols.length-1];

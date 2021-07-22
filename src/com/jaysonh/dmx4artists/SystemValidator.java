@@ -9,15 +9,17 @@ package com.jaysonh.dmx4artists;
   * @since   1.1
   */
 
-public class OSXValidator
+public class SystemValidator
 {
-	public bool isValid()
+	public boolean isValid()
 	{
 		if( checkOS() == OS_OSX )
 		{
-			return new OSXValidator().osxValid.isValid();
+			return new OSXValidator().isValid();
 		}else if(checkOS() == OS_WIN )
-			return true;
+		{
+			return new WINValidator().isValid();
+		}
 		return false;
 	}
 	
@@ -34,6 +36,7 @@ public class OSXValidator
 		  else
 			  	return OS_UNK;
 	}
+	
 	static final int OS_UNK = 0;
 	static final int OS_OSX = 1;
 	static final int OS_WIN = 2;

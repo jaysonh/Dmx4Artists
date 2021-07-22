@@ -13,7 +13,7 @@ public class OSXValidator
 {
 	public boolean isValid()
 	{
-		OSXCommand command = new OSXCommand("ls -al /usr/local/lib/libftd2xx.dylib");
+		OSXCommand command = new OSXCommand( "ls -al /usr/local/lib/libftd2xx.dylib" );
 	    command.run();
 	    
 	    String[] res = command.getOutput();
@@ -55,7 +55,7 @@ public class OSXValidator
 			return true;
 	    }else
 	    {
-	    	System.out.println("could not load libftd2xx.dylib, check folder /usr/local/lib/") ;
+	    	System.err.println("could not load libftd2xx.dylib, check folder /usr/local/lib/") ;
 	       return false;
 	    }
 		

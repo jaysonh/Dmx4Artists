@@ -33,7 +33,7 @@ public class DMXControl  extends Thread
       catch (FTDIException e) 
       {
               // print the error message and exit
-              System.out.println(e);
+              System.err.println(e);
       }
       setupDevice( numChannels + 1 ); // need to add an extra channel so we don't get overrun
   }
@@ -56,7 +56,7 @@ public class DMXControl  extends Thread
       }catch ( FTDIException e ) 
       {
           // print the error message and exit
-          System.out.println(e);
+          System.err.println(e);
       }
   }
   
@@ -120,7 +120,7 @@ public class DMXControl  extends Thread
             ftdiDmx.sendData( dmxData, numChannels );
           }catch( FTDIException e )
           {
-             System.out.println( "Cannot send data" ); 
+             System.err.println( "Cannot send data" ); 
           }
           // Sleep the thread to allow other processing and for DMX data to send
           try 
@@ -262,7 +262,7 @@ public class DMXControl  extends Thread
           
         } else
         {
-            System.out.println("ERROR!, number of channels must be less than " + MAX_CHANNELS);
+            System.err.println("ERROR!, number of channels must be less than " + MAX_CHANNELS);
         } 
   }
   

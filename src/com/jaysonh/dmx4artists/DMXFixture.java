@@ -145,7 +145,7 @@ public class DMXFixture
         return true;
       }else
       {
-    	  System.out.println("Warning! Channel out of bounds, channel 0 not used");
+    	  System.err.println("Error! Channel out of bounds, channel 0 not used");
         return false;
       }
     }
@@ -183,7 +183,7 @@ public class DMXFixture
             return true;
           }else
           {
-        	  System.out.println("Warning! Channel out of bounds");
+        	  System.err.println("Error! Channel out of bounds");
             return false;
           }
       }

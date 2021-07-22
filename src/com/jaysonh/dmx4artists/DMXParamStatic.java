@@ -46,10 +46,9 @@ public  class DMXParamStatic extends DMXParam
   {
     return "static";
   }
+  
   public void update()
   {
     
   }
-  
-  
 }

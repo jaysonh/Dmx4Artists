@@ -19,8 +19,11 @@ public class SystemValidator
 		}else if(checkOS() == OS_WIN )
 		{
 			return new WINValidator().isValid();
+		}else
+		{
+			System.err.println("Unsupported operating system");
+			return false;
 		}
-		return false;
 	}
 	
 	int checkOS()

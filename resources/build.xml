@@ -49,6 +49,7 @@
 	<property name="project.bin" location="bin"/>
 	<property name="project.bin.data" location="${project.bin}/data"/>
 	<property name="project.examples" location="examples"/>
+	<property name="project.dependencies" location="dependencies"/>
 	<property name="project.reference" location="reference"/>
 	<property name="project.dist" location="distribution"/>
 	<property name="project.dist.version" location="distribution/${project.name}-${library.version}"/>
@@ -163,6 +164,7 @@ ${line}
   		<mkdir dir="${project.tmp}/${project.name}/examples" />
 	  	<mkdir dir="${project.tmp}/${project.name}/reference" />
   		<mkdir dir="${project.tmp}/${project.name}/src" />
+  		<mkdir dir="${project.tmp}/${project.name}/dependencies" />
   		<copy todir="${project.tmp}/${project.name}/examples">
   			<fileset dir="${project.examples}">
 	  			<exclude name="**/*README*"/>
@@ -174,6 +176,9 @@ ${line}
 	  	<copy todir="${project.tmp}/${project.name}/${folder}">
   			<fileset dir="${project.lib}" excludes="README" />
 	  	</copy>
+		<copy todir="${project.tmp}/${project.name}/dependencies">
+		  			<fileset dir="${project.dependencies}"/>
+		</copy>
 	</target>
 	
 	
@@ -248,6 +253,7 @@ ${line}
 	  	<antcall target="parse.file"><param name="file" value="${project.dist.version}/web/index.html"/></antcall>
 		
 		<antcall target="processExamples" />
+		<!--<antcall target="addDependencies"/>-->
 		
 		<replaceregexp file="${project.dist.version}/web/index.html" match="##examples##" replace="" flags="g" />
 	</target>
@@ -366,6 +372,7 @@ ${line}
               </else>
           </if>
     </target>   
+    
     
 	
 	

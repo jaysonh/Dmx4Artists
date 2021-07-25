@@ -13,17 +13,17 @@ public class OSXValidator
 {
 	public boolean isValid()
 	{
-		OSXCommand command = new OSXCommand( "ls -al /usr/local/lib/libftd2xx.dylib" );
-	    command.run();
+		OSXCommand commandDylib = new OSXCommand("ls -al /usr/local/lib/libftd2xx.1.2.2.dylib");
+	    commandDylib.run();
 	    
-	    String[] res = command.getOutput();
+	    String[] res = commandDylib.getOutput();
 	    
 	    boolean dylibOK = false;
 	    boolean permsOK = false;
 	     
 	    if(res.length > 0)
 	    {
-	      String []cols = res[0].split(" "); //split( res[0], " ");
+	      String []cols = res[0].split( " ");
 	      if(cols.length>=15)
 	      {
 	        String dylibLink = cols[cols.length-1];
@@ -48,14 +48,48 @@ public class OSXValidator
 	      }
 	    }
 	    
-	    if( dylibOK && permsOK)
+	    OSXCommand kextstatCmd = new OSXCommand("kextstat");
+	    kextstatCmd.run();
+	    
+	    String[] kextstatRes = kextstatCmd.getOutput();
+	    boolean foundAppleFTDI = false;
+	    
+	    for(int i =0;i < kextstatRes.length; i++)
 	    {
-	       System.out.println("dylib setup ok, library should work");  
-
-			return true;
+	       if( kextstatRes[i].contains("AppleUSBFTDI") )
+	         foundAppleFTDI = true;
+	    }
+	    
+	    if( !dylibOK )
+	    {
+	    	System.err.println("missing libftd2xx.1.2.2.dylib in /usr/local/lib");
+	    	System.err.println("move libftd2xx.1.2.2.dylib from osxDependencies to /usr/local/lib (requires sudo)");
+	    	System.err.println("");
+	    }
+	    
+	    if( !permsOK )
+	    {
+	    	System.err.println("invalid permissions for libftd2xx.dylib");
+	    	System.err.println("please run these commands in terminal: ");
+	    	System.err.println("sudo chmod a+r /usr/local/lib/libftd2xx.1.2.2.dylib");
+	    	System.err.println("sudo chmod a+r /usr/local/lib/libftd2xx.dylib");
+	    	System.err.println("");
+	    }
+	    
+	    if( foundAppleFTDI )
+	    {
+	        System.err.println("error, conflicting FTDI driver found, please remove:");
+	        System.err.println("sudo kextunload -b com.apple.driver.AppleUSBFTDI");
+	        System.err.println("");
+	    }
+	    
+	    if( dylibOK && permsOK && !foundAppleFTDI )
+	    {
+	        System.out.println("library setup ok");  
+	        return true;
 	    }else
 	    {
-	    	System.err.println("could not load libftd2xx.dylib, check folder /usr/local/lib/") ;
+	    	System.out.println("cannot load FTDI driver, see instructions above to fix") ;
 	       return false;
 	    }
 		

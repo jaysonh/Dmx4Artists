@@ -183,7 +183,14 @@ public class FTDIDmx
   {
     if ( checkResult != FTDI_D2XX.FT_OK ) 
     {
-      throw new FTDIException( " error code: "  + checkResult );
+      String errorMsg = "";
+      if( checkResult == 1)
+    	  errorMsg = "invalid device";
+      else if( checkResult == 2 )
+    	  errorMsg = "no device found";
+      else if( checkResult == 3 )
+    	  errorMsg = "cannot open device";
+      throw new FTDIException( " error code: "  + errorMsg );
     }
   }
   

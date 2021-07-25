@@ -32,12 +32,15 @@ public class SystemValidator
 		  
 		  //mac os x
 		  //windows 10
-		  if(osName.startsWith("windows 10"))
+		  if(osName.startsWith("windows"))
 				return OS_WIN;
 		  else if(osName.startsWith("mac os x"))
 			  	return OS_OSX;
 		  else
+		  {
+			  System.err.println( "Unsupported OS:" + osName );
 			  	return OS_UNK;
+		  }
 	}
 	
 	static final int OS_UNK = 0;

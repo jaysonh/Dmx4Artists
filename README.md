@@ -6,6 +6,9 @@
 # Introduction
 This is a processing library to control generic FTDI DMX USB devices, such as the Enttec Open DMX device. The library is designed to be as easy to use as possible for people that are new to programming and DMX lighting. It includes methods and classes for creating timelines, oscilators, trigger events and other behaviours to make it easy to control your DMX based lighting fixtures.
 
+## Important Note
+This library works with Processing 3.5, not Processing 4.0. I'm still working on getting it working with Processing 4.0 
+
 ## Setting up
 
 This library has been tested and works with both Windows and OSX. It is designed to be used with generic FTDI DMX USB devices which are commonly found in the cheap usb DMX controllers you see on Taobao and Aliexpress. 

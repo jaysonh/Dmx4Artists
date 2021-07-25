@@ -13,8 +13,7 @@ public class OSXValidator
 {
 	public boolean isValid()
 	{
-		OSXCommand commandDylib = new OSXCommand("ls -al /usr/local/lib/libftd2xx.1.2.2.dylib");
-	    commandDylib.run();
+		OSXCommand commandDylib = new OSXCommand("ls", "-al", "/usr/local/lib/libftd2xx.1.2.2.dylib");
 	    
 	    String[] res = commandDylib.getOutput();
 	    
@@ -23,8 +22,9 @@ public class OSXValidator
 	     
 	    if(res.length > 0)
 	    {
-	      String []cols = res[0].split( " ");
-	      if(cols.length>=15)
+	      String []cols = res[0].split(" "); //split( res[0], " ");
+	      
+	      if(cols.length>=12)
 	      {
 	        String dylibLink = cols[cols.length-1];
 	        dylibOK = true;
@@ -49,7 +49,6 @@ public class OSXValidator
 	    }
 	    
 	    OSXCommand kextstatCmd = new OSXCommand("kextstat");
-	    kextstatCmd.run();
 	    
 	    String[] kextstatRes = kextstatCmd.getOutput();
 	    boolean foundAppleFTDI = false;
@@ -62,9 +61,9 @@ public class OSXValidator
 	    
 	    if( !dylibOK )
 	    {
-	    	System.err.println("missing libftd2xx.1.2.2.dylib in /usr/local/lib");
-	    	System.err.println("move libftd2xx.1.2.2.dylib from osxDependencies to /usr/local/lib (requires sudo)");
-	    	System.err.println("");
+	        System.err.println("missing libftd2xx.1.2.2.dylib in /usr/local/lib");
+	        System.err.println("move libftd2xx.1.2.2.dylib from osxDependencies to /usr/local/lib (requires sudo)");
+	        System.err.println("");
 	    }
 	    
 	    if( !permsOK )
@@ -78,18 +77,20 @@ public class OSXValidator
 	    
 	    if( foundAppleFTDI )
 	    {
-	        System.err.println("error, conflicting FTDI driver found, please remove:");
-	        System.err.println("sudo kextunload -b com.apple.driver.AppleUSBFTDI");
-	        System.err.println("");
+	    	System.err.println("error, conflicting FTDI driver found, please remove:");
+	    	System.err.println("sudo kextunload -b com.apple.driver.AppleUSBFTDI");
+	    	System.err.println("");
 	    }
 	    
 	    if( dylibOK && permsOK && !foundAppleFTDI )
 	    {
 	        System.out.println("library setup ok");  
+	        
 	        return true;
 	    }else
 	    {
-	    	System.out.println("cannot load FTDI driver, see instructions above to fix") ;
+	       System.out.println("cannot load FTDI driver, see instructions above to fix") ;
+	       
 	       return false;
 	    }
 		

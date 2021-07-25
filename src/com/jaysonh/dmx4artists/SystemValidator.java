@@ -15,8 +15,7 @@ public class SystemValidator
 	{
 		if( checkOS() == OS_OSX )
 		{
-			return true;
-			//return new OSXValidator().isValid();
+			return new OSXValidator().isValid();
 		}else if(checkOS() == OS_WIN )
 		{
 			return new WINValidator().isValid();

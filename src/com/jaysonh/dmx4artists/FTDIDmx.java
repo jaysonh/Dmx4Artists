@@ -26,8 +26,12 @@ public class FTDIDmx
    */
   public FTDIDmx( ) throws FTDIException 
   {
-	      // load dmx devices into the list
-	      loadFTDIDevices();
+	  	  // Check if system is ssetup ok
+		  if( (new SystemValidator()).isValid() )
+		  {
+			  // load dmx devices into the list
+			  loadFTDIDevices();
+		  }
   }
   /**
    * Constructs an OpenDmx object on the given device number. If you only have 1 OpenDMX
@@ -38,11 +42,15 @@ public class FTDIDmx
    */  
   public FTDIDmx( int deviceNum ) throws FTDIException 
   {
-      // load dmx devices into the list
-      loadFTDIDevices();
-      
-      // Open the device
-      openDevice( deviceNum );
+	  // Check if system is ssetup ok
+	  if( (new SystemValidator()).isValid() )
+	  {
+	      // load dmx devices into the list
+	      loadFTDIDevices();
+	      
+	      // Open the device
+	      openDevice( deviceNum );
+	  }
   }
   /**
    * Constructs an OpenDmx object on the given device number. If you only have 1 OpenDMX
@@ -53,26 +61,29 @@ public class FTDIDmx
    */
   public FTDIDmx( String serialNumber ) throws FTDIException
   {
-      // load dmx devices into the list
-      loadFTDIDevices();
-      
-      boolean foundDevice = false;
-      
-      // Now find the deviceIndx for the specified serialNumber
-      for( FTDevice device : deviceList )
-      {
-         if( device.getSerial().equals( serialNumber ) )
-         {
-            openDevice( device.getDeviceIndx() ); 
-            foundDevice = true;
-         }
-      }
-      
-      // If we can't find a device throw an exception
-      if(!foundDevice)
-      {
-        throw new FTDIException("Cannot find " + serialNumber);
-      }
+	  if( (new SystemValidator()).isValid() )
+	  {
+	      // load dmx devices into the list
+	      loadFTDIDevices();
+	      
+	      boolean foundDevice = false;
+	      
+	      // Now find the deviceIndx for the specified serialNumber
+	      for( FTDevice device : deviceList )
+	      {
+	         if( device.getSerial().equals( serialNumber ) )
+	         {
+	            openDevice( device.getDeviceIndx() ); 
+	            foundDevice = true;
+	         }
+	      }
+	      
+	      // If we can't find a device throw an exception
+	      if(!foundDevice)
+	      {
+	        throw new FTDIException("Cannot find " + serialNumber);
+	      }
+	  }
         
   }  
    

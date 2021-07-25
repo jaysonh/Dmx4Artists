@@ -17,23 +17,20 @@ This library has been tested and works with both Windows and OSX. It is designed
 
 ### OSX
 
-You may need to install the libftd2xx.dylib file to your /usr/local/lib folder
+If you receive an error message when using this library then follow these steps:
 
-open the terminal and type: cd /usr/local/lib
-
-if you get a message saying that this folder does not exist then type and retry previous step: sudo mkdir /usr/local/lib
-
-type the following command to open a finder window: sudo open .
-
-now copy the libftd2xx.1.2.2.dylib file from osxDependencies to that folder
-
-back in terminal type: sudo ln -sf /usr/local/lib/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.dylib
+1. Check that you have libftd2xx.1.2.2.dylib in the /usr/local/lib folder: ls -al /usr/local/lib/libftd2xx*
+2. If not copy it from the dependencies/osx folder (requires sudo)
+3. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.1.2.2.dylib
+4. Create a symlink: sudo ln -sf /usr/local/lib/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.dylib
+5. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.dylib
+6. Check that the AppleFTDI driver is not enabled: sudo kextunload -b com.apple.driver.AppleUSBFTDI
 
 it should now work:)
 
 ### Windows
 
-Put the ftd2xx.dll file in the windowsDependencies folder into your C:/windows/system32 folder
+Put the ftd2xx.dll file in the dependencies/win folder into your C:/windows/system32 folder
 
 ### Still having problems?
 

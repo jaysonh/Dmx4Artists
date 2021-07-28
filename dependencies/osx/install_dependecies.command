@@ -1,5 +1,5 @@
 #!/bin/bash
-
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # create /usr/local/lib folder doesn't exist
 if [[ -d /usr/local/lib ]]; then
@@ -15,7 +15,7 @@ if [[ -f /usr/local/lib/libftd2xx.1.2.2.dylib ]]; then
 	echo "found /usr/local/lib/libftd2xx.1.2.2.dylib";
 else
 	echo "copying /usr/local/lib/libftd2xx.1.2.2.dylib";
-	sudo cp libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.1.2.2.dylib
+	sudo cp $SCRIPT_DIR/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.1.2.2.dylib
 fi
 
 # make a symlink to libftd2xx.1.2.2.dylib if it doesn't exist
@@ -27,8 +27,8 @@ else
 fi
 
 # set permissions for dylib and symlink
-sudo chmod a+r /usr/local/lib/libftd2xx.1.2.2.dylib
-sudo chmod a+r /usr/local/lib/libftd2xx.dylib
+sudo chmod a+rx /usr/local/lib/libftd2xx.1.2.2.dylib
+sudo chmod a+rx /usr/local/lib/libftd2xx.dylib
 
 # Disable AppleFTDI driver if it has been enabled
 foundAppleFTDI=`kextstat | grep FTDI | wc -l | xargs`

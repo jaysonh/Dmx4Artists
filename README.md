@@ -17,7 +17,10 @@ This library has been tested and works with both Windows and OSX. It is designed
 
 ### OSX
 
-First step: Run the install_dependencies.command script in the dependencies/osx folder. If there are still problems then try the following steps:
+First step: Run the install_dependencies.command script in the dependencies/osx folder. 
+If you get an error message saying "dylib is not from a trusted developer" or similar then open OSX System Preferences->Security and Privacy then select Allow Anyway at the bottom
+
+If there are still problems then try the following steps:
 
 1. Check that you have libftd2xx.1.2.2.dylib in the /usr/local/lib folder: ls -al /usr/local/lib/libftd2xx*
 2. If not copy it from the dependencies/osx folder (requires sudo)

@@ -22,11 +22,11 @@ public class OSXValidator
 	     
 	    if(res.length > 0)
 	    {
-	      String []cols = res[0].split(" "); //split( res[0], " ");
+	      String []cols = res[0].split(" "); 
 	      
-	      if(cols.length>=12)
+	      if( cols[ cols.length-1].trim().equals("/usr/local/lib/libftd2xx.1.2.2.dylib") )
 	      {
-	        String dylibLink = cols[cols.length-1];
+	    	String dylibLink = cols[cols.length-1].trim();
 	        dylibOK = true;
 	        
 	        // now check permissions for dylib

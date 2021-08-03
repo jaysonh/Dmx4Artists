@@ -33,7 +33,11 @@ public class OSXCommand
           
           while ((s = stdInput.readLine()) != null) 
           {
-              outputLines.add( s );
+        	  s = s.trim();
+        	  if( s.length() > 0 )
+        	  {
+        		  outputLines.add( s );
+        	  }
           }
         } 
         catch (InterruptedException e) { e.printStackTrace(); }

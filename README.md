@@ -17,7 +17,7 @@ This library has been tested and works with both Windows and OSX. It is designed
 
 ### OSX
 
-If you receive an error message when using this library then follow these steps:
+First step: Run the install_dependencies.command script in the dependencies/osx folder. If there are still problems then try the following steps:
 
 1. Check that you have libftd2xx.1.2.2.dylib in the /usr/local/lib folder: ls -al /usr/local/lib/libftd2xx*
 2. If not copy it from the dependencies/osx folder (requires sudo)
@@ -29,6 +29,10 @@ If you receive an error message when using this library then follow these steps:
 it should now work:)
 
 ### Windows
+
+Try running the install_dependencies.bat script as administrator (right click->run as administrator)
+
+If there are still problem  try the following step:
 
 Put the ftd2xx.dll file in the dependencies/win folder into your C:/windows/system32 folder
 

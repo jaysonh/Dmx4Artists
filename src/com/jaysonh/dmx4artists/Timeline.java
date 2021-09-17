@@ -109,6 +109,7 @@ public class Timeline extends Thread
    * @param  paramChannel   channel that is effected
    * @param  start          start time for the event
    * @param  end            end time for the event
+   * 
    * @return nothing
    */ 
   public void add( DMXFixture  parentFixture, // fixture to assign this timeline event to

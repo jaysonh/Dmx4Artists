@@ -160,8 +160,12 @@ public class DMXControl  extends Thread
 	            		float targetVal = ( int ) fixture.getParam( channel ).getValue();
 	            		float diff      = (targetVal - (float)prevVal) * fadeRate;
 	            		
+	            		
 	            		float nextVal = ( float )prevVal + diff; 
-	            		dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( (int)nextVal);
+	            		
+	            		double res = (diff > 0.0) ? Math.ceil( nextVal ) : Math.floor( nextVal );
+	            		
+	            		dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( res );
 		            	
 	            	}else
 	            	{
@@ -199,7 +203,6 @@ public class DMXControl  extends Thread
 	  		float diff      = ((float)(targetVal - prevVal)) * fadeRate;
 	  		
 	  		float nextVal = ( float )prevVal + diff; 
-	  		System.out.println("target: " + targetVal + " nextVal: " + nextVal + " prevVal: " + prevVal + " diff: " + diff );
 	  		dmxData[ channel - 1 ] = (byte)( (int)nextVal);
 	      	
 	  	}else

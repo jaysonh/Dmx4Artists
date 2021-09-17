@@ -163,9 +163,9 @@ public class DMXControl  extends Thread
 	            		
 	            		float nextVal = ( float )prevVal + diff; 
 	            		
-	            		double res = (diff > 0.0) ? Math.ceil( nextVal ) : Math.floor( nextVal );
+	            		double res = ( diff > 0.0 ) ? Math.ceil( nextVal ) : Math.floor( nextVal );
 	            		
-	            		dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( res );
+	            		dmxData[ channel + fixture.getAddress() - 1 ] = ( byte )( res );
 		            	
 	            	}else
 	            	{
@@ -173,6 +173,8 @@ public class DMXControl  extends Thread
 	            		dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( (int)fixture.getParam( channel ).getValue());
 	            	}
               }
+              
+              if( fixtures.size())
           }
       }
   }
@@ -195,21 +197,8 @@ public class DMXControl  extends Thread
     }*/
 	if (channel > 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
 	{
-		if( fadeVals && fadeRate < 1.0 )
-	  	{
-	  		// get previous value
-	  		int   prevVal   = (int)dmxData[ channel - 1 ];
-	  		float targetVal = value;
-	  		float diff      = ((float)(targetVal - prevVal)) * fadeRate;
-	  		
-	  		float nextVal = ( float )prevVal + diff; 
-	  		dmxData[ channel - 1 ] = (byte)( (int)nextVal);
-	      	
-	  	}else
-	  	{
-	  		// get the channel value from the fixture, and convert to a byte to send
-	  		dmxData[ channel - 1 ] = (byte)( value );
-	  	}
+	  	// get the channel value from the fixture, and convert to a byte to send
+	  	dmxData[ channel - 1 ] = (byte)( value ); 	
 	}
   }
 

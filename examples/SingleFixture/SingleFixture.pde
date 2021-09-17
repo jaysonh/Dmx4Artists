@@ -38,9 +38,9 @@ void draw()
 void keyPressed()
 {
    // when we detect a key press then set the rgb light to a random colour
-   rgbLight.setParam( 1, 255 ); // set the fader channel to 255
-   rgbLight.setParam( 2, ( int )random( 0, 255 ) ); // red
-   rgbLight.setParam( 3, ( int )random( 0, 255 ) ); // green
-   rgbLight.setParam( 4, ( int )random( 0, 255 ) ); // blue
-   //rgbLight.setParam( 5, ( int )random( 0, 255 ) ); // white, uncomment if your light has a white channel
+   rgbLight.sendValue( 1, 255 ); // set the fader channel to 255
+   rgbLight.sendValue( 2, ( int )random( 0, 255 ) ); // red
+   rgbLight.sendValue( 3, ( int )random( 0, 255 ) ); // green
+   rgbLight.sendValue( 4, ( int )random( 0, 255 ) ); // blue
+   //rgbLight.sendValue( 5, ( int )random( 0, 255 ) ); // white, uncomment if your light has a white channel
 }

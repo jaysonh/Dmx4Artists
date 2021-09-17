@@ -123,10 +123,24 @@ public class DMXFixture
   }  
   
   /**
-   * Set the param at a given index with a DMXParam object 
+   * Send a value at a given index with a DMXParam object 
    *
    * @param  channel index of param to set
    * @param  param     new param to set in fixture
+   * 
+   * @return true/false if the param was able to be set
+   */
+  public boolean sendValue( int paramIndx, DMXParam param )
+  {
+	  return  setParam( paramIndx, param );
+  }
+  
+  /**
+   * Set the param at a given index with a DMXParam object  (deprecated)
+   *
+   * @param  channel index of param to set
+   * @param  param     new param to set in fixture
+   * 
    * @return true/false if the param was able to be set
    */
   public boolean setParam( int paramIndx, DMXParam param )
@@ -151,9 +165,22 @@ public class DMXFixture
     }
   }
   
-  
   /**
    * Set the param at a given index with a int value 
+   *
+   * @param  paramIndx index of param to set
+   * @param  param     new param to set in fixture
+   * @return true/false if the param was able to be set
+   */
+  public boolean sendValue( int paramIndx, float value)
+  {
+	  setParam( paramIndx, (int) value );
+	  
+	  return true;
+  }
+  
+  /**
+   * Set the param at a given index with a int value  (deprecated, use sendValue instead)
    *
    * @param  paramIndx index of param to set
    * @param  param     new param to set in fixture
@@ -165,6 +192,7 @@ public class DMXFixture
 	  
 	  return true;
   }
+  
   public boolean setParam( int paramIndx, int value )
   {
 	  paramIndx = paramIndx - 1;
@@ -189,6 +217,19 @@ public class DMXFixture
       }
   }
   
+  /**
+   * Set the param at a given index with a int value 
+   *
+   * @param  paramIndx index of param to set
+   * @param  param     new param to set in fixture
+   * @return true/false if the param was able to be set
+   */
+  public boolean sendValue( int paramIndx, int value)
+  {
+	  setParam( paramIndx, value );
+	  
+	  return true;
+  }
   /**
    * Set the address of this fixture
    * 

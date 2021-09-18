@@ -173,8 +173,6 @@ public class DMXControl  extends Thread
 	            		dmxData[ channel + fixture.getAddress() - 1 ] = (byte)( (int)fixture.getParam( channel ).getValue());
 	            	}
               }
-              
-              if( fixtures.size())
           }
       }
   }
@@ -188,13 +186,6 @@ public class DMXControl  extends Thread
    */
   public void sendValue(int channel, int value)
   {
-    /*if (channel > 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
-    {
-      dmxData[ channel - 1] = (byte)value;         // store the value in the dmx value
-    } else
-    {
-      System.out.println("Warning! Channel out of bounds, channel 0 not used"); // Print an error message
-    }*/
 	if (channel > 0 && channel <= numChannels ) // Check channel is valid, first channel is always 1
 	{
 	  	// get the channel value from the fixture, and convert to a byte to send
@@ -263,14 +254,9 @@ public class DMXControl  extends Thread
    * 
    * @param status true/false to fade
    */
-  public void setFade( boolean status )
+  public void setFixtureFade( boolean status )
   {
 	  fadeVals = status;
-	  
-	  if(fadeVals)
-	  {
-		  
-	  }
   }
   
   /**
@@ -279,7 +265,7 @@ public class DMXControl  extends Thread
    * 
    * @param fadeVal - rate to fade into new value
    */
-  public void setFadeRate( float fadeVal )
+  public void setFixtureFadeRate( float fadeVal )
   {
 	  fadeRate = fadeVal;
   }

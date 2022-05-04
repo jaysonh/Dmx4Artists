@@ -17,10 +17,10 @@ public class OSXValidator
 	    
 	    String[] res = commandDylib.getOutput();
 	    
-	    boolean dylibOK = false;
-	    boolean permsOK = false;
+	    boolean dylibOK = true;
+	    boolean permsOK = true;
 	     
-	    if(res.length > 0)
+	    /*if(res.length > 0)
 	    {
 	      String []cols = res[0].split(" "); 
 	      
@@ -46,7 +46,7 @@ public class OSXValidator
 	          permsOK = true;
 	        }
 	      }
-	    }
+	    }*/
 	    
 	    OSXCommand kextstatCmd = new OSXCommand("kextstat");
 	    

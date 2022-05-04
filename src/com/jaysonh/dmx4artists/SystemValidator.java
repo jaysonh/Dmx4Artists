@@ -43,6 +43,24 @@ public class SystemValidator
 		  }
 	}
 	
+	/*
+	 * Get the operating string as a 3 letter string
+	 */
+	String getOS()
+	{
+		if( checkOS() == OS_OSX )
+		{
+			return "osx";
+		}else if(checkOS() == OS_WIN )
+		{
+			return "win";
+		}else
+		{
+			System.err.println("Unsupported operating system");
+			return "";
+		}
+	}
+	
 	static final int OS_UNK = 0;
 	static final int OS_OSX = 1;
 	static final int OS_WIN = 2;

@@ -41,7 +41,11 @@ public interface FTDI_D2XX extends Library
   final static byte FT_PURGE_RX = 1; // Purge rx and tx buffers
   final static byte FT_PURGE_TX = 2;
 
-  FTDI_D2XX INSTANCE = (FTDI_D2XX) Native.loadLibrary("ftd2xx", FTDI_D2XX.class);
+  //FTDI_D2XX INSTANCE = (FTDI_D2XX) Native.loadLibrary("ftd2xx", FTDI_D2XX.class);
+  // Load the dylib or dll from the Processing DMXForArtist library folder
+  // This is hopefully more reliable than before
+  FTDI_D2XX INSTANCE = (FTDI_D2XX) Native.loadLibrary( new PathFinder().getLibraryPath(), FTDI_D2XX.class); 
+  
   int FT_Open(short intDeviceNumber, PointerByReference handle);
   int FT_Close(Pointer handle);
   int FT_ResetDevice (Pointer handle);

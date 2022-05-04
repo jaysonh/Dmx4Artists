@@ -21,9 +21,10 @@ public class WINValidator
 	   */ 
 	public boolean isValid()
 	{
-		boolean exists    = false;
+		boolean exists    = true;
 	    String  foundPath = "";
-	   
+
+	    /*
 	    // Get the system paths for DLL files
 	    String property = System.getProperty("java.library.path");
 	    StringTokenizer parser = new StringTokenizer(property, ";");
@@ -65,6 +66,7 @@ public class WINValidator
 	         }
 	         
 	         return false;
-	      }
+	      }*/
+	      return true;
 	}
 }

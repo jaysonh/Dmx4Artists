@@ -26,6 +26,7 @@ public class DMXControl  extends Thread
    */
    public DMXControl( String serialNum, int numChannels )
    {
+	  System.out.println("DMXForArtists version: " + VERSION_NUM);
       try 
       {  	  
               ftdiDmx = new FTDIDmx( serialNum );
@@ -48,6 +49,7 @@ public class DMXControl  extends Thread
    */
   public DMXControl( int deviceIndx, int numChannels )
   {
+	  System.out.println("DMXForArtists version: " + VERSION_NUM);
       try 
       {
           ftdiDmx     = new FTDIDmx( deviceIndx );
@@ -232,9 +234,7 @@ public class DMXControl  extends Thread
    * @return nothing
    */
   private void setupDevice( int numChannels )
-  {
-	  System.out.println("DMXForArtists version: " + VERSION_NUM);
-	  
+  {  
       if ( numChannels <= MAX_CHANNELS ) // make sure we don't have too many channels
       {
           this.numChannels = numChannels;
@@ -282,7 +282,7 @@ public class DMXControl  extends Thread
    ************************************************************************************/
   private final int SLEEP_TIME = 50; // number of ms for the update thread to sleep for
 
-  public final String VERSION_NUM = "1.4";
+  public final String VERSION_NUM = "1.5";
   
   private FTDIDmx                ftdiDmx;     // dmx control object
   private ArrayList <DMXFixture> fixtureList; // list of all the DMX fixtures

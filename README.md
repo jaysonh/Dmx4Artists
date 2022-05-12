@@ -6,36 +6,25 @@
 # Introduction
 This is a processing library to control generic FTDI DMX USB devices, such as the Enttec Open DMX device. The library is designed to be as easy to use as possible for people that are new to programming and DMX lighting. It includes methods and classes for creating timelines, oscilators, trigger events and other behaviours to make it easy to control your DMX based lighting fixtures.
 
-## Important Note
-This library works with Processing 3.5, not Processing 4.0. I'm still working on getting it working with Processing 4.0 
-
-## Setting up
-
 This library has been tested and works with both Windows and OSX. It is designed to be used with generic FTDI DMX USB devices which are commonly found in the cheap usb DMX controllers you see on Taobao and Aliexpress. 
 
 ![USB DMX Device](https://github.com/jaysonh/Dmx4Artists/blob/main/assets/images/usb-dmx.jpg)
 
+## Version
+The latest version of this library 1.5 has been updated to work with Processing 4 (yay!) 
+
+## Setting up
+
+The library should now run straight away without any configuration. But if you are having problems please follow the steps below:
+
 ### OSX
-
-First step: Run the install_dependencies.command script in the dependencies/osx folder. 
-If you get an error message saying "dylib is not from a trusted developer" or similar then open OSX System Preferences->Security and Privacy then select Allow Anyway at the bottom
-
-If there are still problems then try the following steps:
-
-1. Check that you have libftd2xx.1.2.2.dylib in the /usr/local/lib folder: ls -al /usr/local/lib/libftd2xx*
-2. If not copy it from the dependencies/osx folder (requires sudo)
-3. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.1.2.2.dylib
-4. Create a symlink: sudo ln -sf /usr/local/lib/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.dylib
-5. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.dylib
-6. Check that the AppleFTDI driver is not enabled: sudo kextunload -b com.apple.driver.AppleUSBFTDI
-
-it should now work:)
+1. Copy the libftd2xx.1.2.2.dylib in the dependencies folder to /usr/local/lib folder (requires sudo)
+2. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.1.2.2.dylib
+3. Create a symlink: sudo ln -sf /usr/local/lib/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.dylib
+4. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.dylib
+5. Check that the AppleFTDI driver is not enabled: sudo kextunload -b com.apple.driver.AppleUSBFTDI
 
 ### Windows
-
-Try running the install_dependencies.bat script as administrator (right click->run as administrator)
-
-If there are still problem  try the following step:
 
 Put the ftd2xx.dll file in the dependencies/win folder into your C:/windows/system32 folder
 

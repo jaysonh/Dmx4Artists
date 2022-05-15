@@ -28,8 +28,10 @@ public class DMXControl  extends Thread
    {
 	  System.out.println("DMXForArtists version: " + VERSION_NUM);
       try 
-      {  	  
-              ftdiDmx = new FTDIDmx( serialNum );
+      {  
+    	  	  this.numChannels = numChannels;
+              dmxData          = new byte[ numChannels ];
+    	  	  this.ftdiDmx     = new FTDIDmx( serialNum );
       } 
       catch (FTDIException e) 
       {
@@ -50,14 +52,19 @@ public class DMXControl  extends Thread
   public DMXControl( int deviceIndx, int numChannels )
   {
 	  System.out.println("DMXForArtists version: " + VERSION_NUM);
+  	  this.numChannels = numChannels;
+      dmxData          = new byte[ numChannels ];
       try 
       {
-          ftdiDmx     = new FTDIDmx( deviceIndx );
-          connected   = true;
+	  	  this.ftdiDmx     	   = new FTDIDmx( deviceIndx );
+	  	  this.connected   	   = true;
+	  	  
           setupDevice( numChannels );
       }catch ( FTDIException e ) 
       {
-          // print the error message and exit
+    	  this.connected = false;
+    	  
+          // print the error message 
           System.err.println(e);
       }
   }
@@ -89,6 +96,50 @@ public class DMXControl  extends Thread
   
       threadRunning = true;
   }
+  
+  /**
+   * Get the number of dmx channels used
+   *
+   * @return number of dmx channels used 
+   */
+  public int getNumChannels()
+  {
+	  return numChannels;
+  }
+  
+  /**
+   * Get the dmx data
+   *
+   * @return array containing dmx values
+   */
+  public int [] getData()
+  {
+	  // convert bytes to int 
+	  int [] data = new int[ numChannels ];
+	  
+	  for( int i = 0; i < numChannels; i++ )
+	  {
+		  data[ i ] = Byte.toUnsignedInt( dmxData[ i ] );
+	  }
+	  
+	  // return int array
+	  return data;
+  }
+  
+  /**
+   * Get the dmx data of a given index
+   *
+   * @param indx index to get
+   * @return array containing dmx values
+   */
+  public int getData( int indx )
+  {
+	  if( indx > 0 && indx < numChannels) {
+		  return Byte.toUnsignedInt(dmxData[indx-1]);
+	  }else{
+		  return -1;
+	  }
+  }
 
   /**
    * Add a fixture to the controller
@@ -113,13 +164,16 @@ public class DMXControl  extends Thread
   {
       while ( threadRunning ) // thread continues until flag set to false
       {
+    	  System.out.println("connected: " + connected);
           // update all the fixtures
           updateFixtures(); 
     
           // try sending to dmx device
           try
           {
-            ftdiDmx.sendData( dmxData, numChannels );
+        	  if(connected){
+        		  ftdiDmx.sendData( dmxData, numChannels );
+        	  }
           }catch( FTDIException e )
           {
              System.err.println( "Cannot send data" ); 
@@ -143,8 +197,7 @@ public class DMXControl  extends Thread
    */
   public void updateFixtures()
   {
-      if ( connected ) // make sure we are connected to the dmx devie
-      {
+      
           // Update each fixture and set the data
           // Set the dmx data from each fixture
           for ( DMXFixture fixture : fixtureList )
@@ -176,7 +229,7 @@ public class DMXControl  extends Thread
 	            	}
               }
           }
-      }
+      
   }
 
   /**
@@ -240,7 +293,6 @@ public class DMXControl  extends Thread
           this.numChannels = numChannels;
     
           connected   = true;
-          dmxData     = new byte[ numChannels ];
           fixtureList = new ArrayList< DMXFixture >();
       
           this.start(); // start the thread running
@@ -282,7 +334,7 @@ public class DMXControl  extends Thread
    ************************************************************************************/
   private final int SLEEP_TIME = 50; // number of ms for the update thread to sleep for
 
-  public final String VERSION_NUM = "1.5";
+  public final String VERSION_NUM = "1.6";
   
   private FTDIDmx                ftdiDmx;     // dmx control object
   private ArrayList <DMXFixture> fixtureList; // list of all the DMX fixtures

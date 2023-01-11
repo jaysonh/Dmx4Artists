@@ -170,15 +170,15 @@ ${line}
 	  			<exclude name="**/*README*"/>
   			</fileset>
 	  	</copy>
+		<copy todir="${project.tmp}/${project.name}/dependencies">
+				  			<fileset dir="${project.dependencies}"/>
+		</copy>
   		<copy todir="${project.tmp}/${project.name}/src">
   			<fileset dir="${project.src}"/>
 	  	</copy>
 	  	<copy todir="${project.tmp}/${project.name}/${folder}">
   			<fileset dir="${project.lib}" excludes="README" />
 	  	</copy>
-		<copy todir="${project.tmp}/${project.name}/dependencies">
-		  			<fileset dir="${project.dependencies}"/>
-		</copy>
 	</target>
 	
 	
@@ -253,7 +253,6 @@ ${line}
 	  	<antcall target="parse.file"><param name="file" value="${project.dist.version}/web/index.html"/></antcall>
 		
 		<antcall target="processExamples" />
-		<!--<antcall target="addDependencies"/>-->
 		
 		<replaceregexp file="${project.dist.version}/web/index.html" match="##examples##" replace="" flags="g" />
 	</target>
@@ -373,14 +372,12 @@ ${line}
           </if>
     </target>   
     
-    
 	
 	
 	<target name="clean" depends="library.run">
 		<delete dir="${project.bin}"/>
 		<delete dir="${project.tmp}"/>
 		<echo>
-		
 ${line}
 Name        ${project.name} 
 Version     ${library.prettyVersion} (${library.version})

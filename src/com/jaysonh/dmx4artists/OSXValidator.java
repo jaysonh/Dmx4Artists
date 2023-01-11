@@ -13,7 +13,7 @@ public class OSXValidator
 {
 	public boolean isValid()
 	{
-		OSXCommand commandDylib = new OSXCommand("ls", "-al", "/usr/local/lib/libftd2xx.1.2.2.dylib");
+		OSXCommand commandDylib = new OSXCommand("ls", "-al", "/usr/local/lib/libftd2xx.1.4.24.dylib");
 	    
 	    String[] res = commandDylib.getOutput();
 	    
@@ -61,8 +61,8 @@ public class OSXValidator
 	    
 	    if( !dylibOK )
 	    {
-	        System.err.println("missing libftd2xx.1.2.2.dylib in /usr/local/lib");
-	        System.err.println("move libftd2xx.1.2.2.dylib from osxDependencies to /usr/local/lib (requires sudo)");
+	        System.err.println("missing libftd2xx.1.4.24.dylib in /usr/local/lib");
+	        System.err.println("move libftd2xx.1.4.24.dylib from osxDependencies to /usr/local/lib (requires sudo)");
 	        System.err.println("");
 	    }
 	    
@@ -70,7 +70,7 @@ public class OSXValidator
 	    {
 	    	System.err.println("invalid permissions for libftd2xx.dylib");
 	    	System.err.println("please run these commands in terminal: ");
-	    	System.err.println("sudo chmod a+r /usr/local/lib/libftd2xx.1.2.2.dylib");
+	    	System.err.println("sudo chmod a+r /usr/local/lib/libftd2xx.1.4.24.dylib");
 	    	System.err.println("sudo chmod a+r /usr/local/lib/libftd2xx.dylib");
 	    	System.err.println("");
 	    }

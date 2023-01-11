@@ -34,10 +34,10 @@ public class PathFinder
           
           if(os == SystemValidator.OS_OSX)
           {
-        	  dmxLibPath = paths[0] + "Dmx4Artists/dependencies/osx/libftd2xx.1.2.2.dylib"; 
+        	  dmxLibPath = paths[0] + "Dmx4Artists/dependencies/osx/" + osxLib; 
           }else if(os == SystemValidator.OS_WIN)
           {
-        	  dmxLibPath = paths[0] + "Dmx4Artists/dependencies/win/ftd2xx.dll"; 
+        	  dmxLibPath = paths[0] + "Dmx4Artists/dependencies/win/" + winLib; 
           }
           System.out.println("found path: " + dmxLibPath);
           foundLibPath = true;
@@ -46,4 +46,7 @@ public class PathFinder
       
       return dmxLibPath;
   }
+   
+  private String osxLib = "libftd2xx.1.4.24.dylib";
+  private String winLib = "ftd2xx.dll";
 }

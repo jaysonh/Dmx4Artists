@@ -9,21 +9,21 @@ that are new to programming and DMX lighting. It includes methods and classes fo
 your DMX based lighting fixtures.
 
 This library has been tested and works with both Windows and OSX. It is designed to be used with generic FTDI DMX USB devices which are commonly found in the cheap usb DMX 
-controllers you see on Taobao and Aliexpress. 
+controllers you find on Taobao and Aliexpress. 
 
 ![USB DMX Device](https://github.com/jaysonh/Dmx4Artists/blob/main/assets/images/usb-dmx.jpg)
 
 ## Version
-The latest version of this library 1.5 has been updated to work with Processing 4 (yay!) 
+The latest version of this library 2.0 has been updated to work with Processing 4 on arm MacBook and Windows 11
 
 ## Setting up
 
 The library should now run straight away without any configuration. But if you are having problems please follow the steps below:
 
 ### OSX
-1. Copy the libftd2xx.1.2.2.dylib in the dependencies folder to /usr/local/lib folder (requires sudo)
-2. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.1.2.2.dylib
-3. Create a symlink: sudo ln -sf /usr/local/lib/libftd2xx.1.2.2.dylib /usr/local/lib/libftd2xx.dylib
+1. Copy the libftd2xx.1.4.24.dylib in the dependencies folder to /usr/local/lib folder (requires sudo)
+2. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.1.4.24.dylib
+3. Create a symlink: sudo ln -sf /usr/local/lib/libftd2xx.1.4.24.dylib /usr/local/lib/libftd2xx.dylib
 4. Set the permissions for symlink: sudo chmod a+r /usr/local/lib/libftd2xx.dylib
 5. Check that the AppleFTDI driver is not enabled: sudo kextunload -b com.apple.driver.AppleUSBFTDI
 
@@ -38,8 +38,7 @@ Try installing qlc plus https://qlcplus.org/ which may set up some extra system 
 ##
 
 
-This library was create for the DMX Lighting for Artists workshop for OFCourse in Shanghai, that was run in 2019. Credit to Omar Khan whose code helped me to understand how to 
-interface with FTDI device https://github.com/orcaomar
+This library was create for the DMX Lighting for Artists workshop for OFCourse in Shanghai, that was run in 2019. Credit to Omar Khan whose code helped me to understand how to interface with FTDI device https://github.com/orcaomar
 
                                _.-~  )
                     _..--~~~~,'   ,-/     _  ((visit ofcourse.io))

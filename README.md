@@ -35,10 +35,12 @@ Put the ftd2xx.dll file in the dependencies/win folder into your C:/windows/syst
 
 Try installing qlc plus https://qlcplus.org/ which may set up some extra system properties that need to be set
 
-##
+### Donate
 
 [![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SW3V3XNHNU9ME)
 
 If you find this project useful then feel free to make a small donation.
+
+### Thanks
 
 This library was create for the DMX Lighting for Artists workshop for OFCourse in Shanghai, that was run in 2019 and continuously updated since. Credit to Omar Khan whose code helped me to understand how to interface with FTDI device https://github.com/orcaomar

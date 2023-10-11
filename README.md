@@ -37,11 +37,8 @@ Try installing qlc plus https://qlcplus.org/ which may set up some extra system 
 
 ##
 
-```html
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SW3V3XNHNU9ME">
-  <img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" alt="Donate with PayPal" />
-</a>
-```
+[![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SW3V3XNHNU9ME)
+
 If you find this project useful then feel free to make a small donation.
 
 This library was create for the DMX Lighting for Artists workshop for OFCourse in Shanghai, that was run in 2019 and continuously updated since. Credit to Omar Khan whose code helped me to understand how to interface with FTDI device https://github.com/orcaomar

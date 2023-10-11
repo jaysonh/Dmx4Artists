@@ -36,11 +36,13 @@ Put the ftd2xx.dll file in the dependencies/win folder into your C:/windows/syst
 Try installing qlc plus https://qlcplus.org/ which may set up some extra system properties that need to be set
 
 ##
+```markdown
 [
   ![Donate with PayPal]
   (https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)
 ]
 (https://www.paypal.com/donate/?hosted_button_id=SW3V3XNHNU9ME)
+```
 
 If you find this project useful then feel free to make a small donation.
 

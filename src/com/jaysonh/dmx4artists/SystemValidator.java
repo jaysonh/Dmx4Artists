@@ -19,7 +19,10 @@ public class SystemValidator
 		}else if(checkOS() == OS_WIN )
 		{
 			return new WINValidator().isValid();
-		}else
+		}else if(checkOS() == OS_LINUX)
+	    {
+	        return new LinuxValidator().isValid();
+	    }else
 		{
 			System.err.println("Unsupported operating system");
 			return false;
@@ -36,6 +39,8 @@ public class SystemValidator
 				return OS_WIN;
 		  else if(osName.startsWith("mac os x"))
 			  	return OS_OSX;
+	      else if(osName.startsWith("linux"))
+	          return OS_LINUX;
 		  else
 		  {
 			  System.err.println( "Unsupported OS:" + osName );
@@ -54,6 +59,9 @@ public class SystemValidator
 		}else if(checkOS() == OS_WIN )
 		{
 			return "win";
+		}else if(checkOS() == OS_LINUX )
+		{
+			return "linux";
 		}else
 		{
 			System.err.println("Unsupported operating system");
@@ -61,8 +69,9 @@ public class SystemValidator
 		}
 	}
 	
-	static final int OS_UNK = 0;
-	static final int OS_OSX = 1;
-	static final int OS_WIN = 2;
+	static final int OS_UNK   = 0;
+	static final int OS_OSX   = 1;
+	static final int OS_WIN   = 2;
+	static final int OS_LINUX = 3;
 
 }

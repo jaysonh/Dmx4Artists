@@ -334,7 +334,7 @@ public class DMXControl  extends Thread
    ************************************************************************************/
   private final int SLEEP_TIME = 50; // number of ms for the update thread to sleep for
 
-  public final String VERSION_NUM = "1.6";
+  public final String VERSION_NUM = "2.1";
   
   private FTDIDmx                ftdiDmx;     // dmx control object
   private ArrayList <DMXFixture> fixtureList; // list of all the DMX fixtures

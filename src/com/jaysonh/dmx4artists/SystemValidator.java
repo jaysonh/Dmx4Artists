@@ -43,7 +43,7 @@ public class SystemValidator
 	          return OS_LINUX;
 		  else
 		  {
-			  System.err.println( "Unsupported OS:" + osName );
+			    System.err.println( "Unsupported OS:" + osName );
 			  	return OS_UNK;
 		  }
 	}

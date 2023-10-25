@@ -164,7 +164,6 @@ public class DMXControl  extends Thread
   {
       while ( threadRunning ) // thread continues until flag set to false
       {
-    	  System.out.println("connected: " + connected);
           // update all the fixtures
           updateFixtures(); 
     

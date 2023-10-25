@@ -14,7 +14,7 @@ controllers you find on Taobao and Aliexpress.
 ![USB DMX Device](https://github.com/jaysonh/Dmx4Artists/blob/main/assets/images/usb-dmx.jpg)
 
 ## Version
-The latest version of this library 2.0 has been updated to work with Processing 4 on arm MacBook and Windows 11
+The latest version of this library 2.1 has been updated to work with Processing 4 on macbook intel/arm, windows 10, linux (ubuntu 64 bit)
 
 ## Setting up
 
@@ -30,6 +30,14 @@ The library should now run straight away without any configuration. But if you a
 ### Windows
 
 Put the ftd2xx.dll file in the dependencies/win folder into your C:/windows/system32 folder
+
+### Linux
+
+Tested and working on ubuntu 22.04 LTS. Should work on other linux distros, just make sure you have the correct libftd2xx.so file located in /usr/local/lib/
+
+You can download the correct libftd2xx.so file for your system from here: https://ftdichip.com/drivers/d2xx-drivers/
+
+For raspberry pi try the hard float versions although this is untested.
 
 ### Still having problems?
 
